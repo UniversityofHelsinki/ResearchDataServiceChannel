@@ -3,7 +3,7 @@ label: 'Tilauslomake linkki'
 ui_limit: ''
 properties:
   content:
-    value: "<a class=\"button\" href=\"[url:absolute]/service-order-form?ordered_service=[node:nid]\">Tilauslomakkeelle</a>\r\n"
+    value: "<a class=\"button\" href=\"[url:absolute]/service-order-form?ordered_service=[node:nid]\">Go to order form</a>\r\n"
     format: hy_unrestricted
 type: token
 type_label: 'Token field'
