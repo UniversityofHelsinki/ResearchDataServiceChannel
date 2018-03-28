@@ -143,6 +143,12 @@
     "test-unit": [
       "bin/phpunit -c phpunit.xml.dist --testsuite unit"
     ],
+    "test": [
+      "@test-behavioral",
+      "@test-static-php",
+      "@test-static-js",
+      "@test-unit"
+    ],
     "fix": [
       "bin/phpcbf --colors --standard=Drupal --extensions=php,module ./public/modules/custom",
       "bin/phpcbf --colors --standard=Drupal --extensions=php,theme ./public/themes/custom"
