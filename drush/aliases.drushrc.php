@@ -16,7 +16,7 @@ $aliases['production'] = array(
   'uri' => 'https://datasupport.helsinki.fi',
   'root' => '/data/rds/public',
   'remote-host' => 'datasupport.helsinki.fi',
-  'remote-user' => 'marjuhko',
+  'remote-user' => 'USERNAME',
 );
 
 #$aliases['staging'] = array(
