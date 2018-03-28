@@ -15,7 +15,7 @@
     "drupal/fico": "~1.0",
     "drupal/google_analytics": "~2.2",
     "drupal/libraries": "3.x-dev",
-    "drupal/pathauto": "^1.1",
+    "drupal/pathauto": "1.0",
     "drupal/restui": "^1.15",
     "drupal/swiftmailer": "^1.0@beta",
     "drupal/token": "^1.1",
