@@ -26,9 +26,9 @@
 #  'remote-user' => 'root',
 #);
 
-$aliases['testing'] = array(
-  'uri' => 'https://dev.researchdata-hy.com/',
-  'root' => '/var/www/dev.researchdata-hy.com/public',
-  'remote-host' => 'dev.researchdata-hy.com',
-  'remote-user' => 'centos',
-);
+#$aliases['testing'] = array(
+#  'uri' => 'https://dev.researchdata-hy.com/',
+#  'root' => '/var/www/dev.researchdata-hy.com/public',
+#  'remote-host' => 'dev.researchdata-hy.com',
+#  'remote-user' => 'centos',
+#);
