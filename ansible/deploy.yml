@@ -68,3 +68,4 @@
       command: >
         drush updb -y && drush cr
       notify: "drush updb && drush cr"
+      
