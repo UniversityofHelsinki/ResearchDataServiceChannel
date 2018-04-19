@@ -65,7 +65,5 @@
       become: yes
 
     - name: Drupal | Drush database update & clear caches
-      command: >
-        drush updb -y && drush cr
+      command: "drush updb -y && drush cr chdir={{ projects.default.public_root }}"
       notify: "drush updb && drush cr"
-      
