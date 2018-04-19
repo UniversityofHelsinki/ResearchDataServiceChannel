@@ -63,3 +63,8 @@
             - { src: "{{ projects.default.root }}/shared/files", dest: "{{ projects.default.public_root }}/sites/default/files" }
 
       become: yes
+
+    - name: Drupal | Drush database update & clear caches
+      command: >
+        drush updb -y && drush cr
+      notify: "drush updb && drush cr"
