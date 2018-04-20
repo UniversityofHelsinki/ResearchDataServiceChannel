@@ -63,3 +63,14 @@
             - { src: "{{ projects.default.root }}/shared/files", dest: "{{ projects.default.public_root }}/sites/default/files" }
 
       become: yes
+
+    # Executes drush commands
+    - name: Run drush commands
+      shell: drush -y -r {{ projects.default.public_root }} {{ item }}
+      with_items:
+        # Performs database updates.
+        - "updb"
+        # Clears caches.
+        - "cr"
+        # Imports configuration changes.
+        #- "cim"
