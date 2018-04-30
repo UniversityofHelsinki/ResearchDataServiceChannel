@@ -1,0 +1,9 @@
+uuid: 7fe3ce17-966b-460c-bd37-f2e667d12a8c
+langcode: en
+status: true
+dependencies: {  }
+name: 'Modification frequency'
+vid: modification_frequency
+description: ''
+hierarchy: 0
+weight: 0

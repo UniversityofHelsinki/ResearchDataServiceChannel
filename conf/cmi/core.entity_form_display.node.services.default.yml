@@ -14,9 +14,12 @@ dependencies:
     - field.field.node.services.field_how_to_access
     - field.field.node.services.field_image
     - field.field.node.services.field_links
+    - field.field.node.services.field_modification_frequency
     - field.field.node.services.field_project_members_access_to_
     - field.field.node.services.field_project_phase
     - field.field.node.services.field_publishing_options
+    - field.field.node.services.field_security_level
+    - field.field.node.services.field_service_provider
     - field.field.node.services.field_service_type
     - field.field.node.services.field_who_is_this_for
     - image.style.thumbnail
@@ -88,7 +91,7 @@ content:
     type: number
     region: content
   field_guide_link:
-    weight: 22
+    weight: 26
     settings:
       placeholder_url: ''
       placeholder_title: ''
@@ -119,6 +122,12 @@ content:
     third_party_settings: {  }
     type: link_default
     region: content
+  field_modification_frequency:
+    weight: 20
+    settings: {  }
+    third_party_settings: {  }
+    type: options_buttons
+    region: content
   field_project_members_access_to_:
     weight: 18
     settings: {  }
@@ -132,13 +141,25 @@ content:
     type: options_buttons
     region: content
   field_publishing_options:
-    weight: 20
+    weight: 21
+    settings: {  }
+    third_party_settings: {  }
+    type: options_buttons
+    region: content
+  field_security_level:
+    weight: 22
+    settings: {  }
+    third_party_settings: {  }
+    type: options_buttons
+    region: content
+  field_service_provider:
+    weight: 24
     settings: {  }
     third_party_settings: {  }
     type: options_buttons
     region: content
   field_service_type:
-    weight: 21
+    weight: 23
     settings: {  }
     third_party_settings: {  }
     type: options_buttons
@@ -175,7 +196,7 @@ content:
     type: boolean_checkbox
     settings:
       display_label: true
-    weight: 121
+    weight: 25
     third_party_settings: {  }
     region: content
   sticky:

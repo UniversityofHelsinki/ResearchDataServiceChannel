@@ -1,0 +1,9 @@
+uuid: 2b2b9bb0-076a-426a-9066-54366e1a6226
+langcode: en
+status: true
+dependencies: {  }
+name: 'Security level'
+vid: security_level
+description: ''
+hierarchy: 0
+weight: 0
