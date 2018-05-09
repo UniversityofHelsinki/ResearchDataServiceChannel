@@ -1,0 +1,11 @@
+uuid: b041d39d-8168-43fe-a206-c9acee501e41
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.modification_frequency
+id: taxonomy_term.modification_frequency
+target_entity_type_id: taxonomy_term
+target_bundle: modification_frequency
+default_langcode: site_default
+language_alterable: false

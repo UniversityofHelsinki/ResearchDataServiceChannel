@@ -1,0 +1,9 @@
+uuid: 315bcbf7-e619-480c-b161-be82c9c2dabb
+langcode: en
+status: true
+dependencies: {  }
+name: 'Service provider'
+vid: service_provider
+description: ''
+hierarchy: 0
+weight: 0
