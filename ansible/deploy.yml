@@ -73,4 +73,4 @@
         # Clears caches.
         - "cr"
         # Imports configuration changes.
-        #- "cim"
+        - "cim -y"
