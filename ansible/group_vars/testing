@@ -15,8 +15,8 @@ projects:
     public_root: "{{ projects_root }}/rds/public"
     hosts:
       - datasupport-test.it.helsinki.fi
-    key: "/etc/pki/tls/private/datasupport.helsinki.fi.key"
-    crt: "/etc/pki/tls/certs/datasupport.helsinki.fi.crt"
+    #key: "/etc/pki/tls/private/datasupport.helsinki.fi.key"
+    #crt: "/etc/pki/tls/certs/datasupport.helsinki.fi.crt"
 
 #
 # CRON
