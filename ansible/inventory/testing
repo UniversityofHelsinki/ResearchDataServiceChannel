@@ -3,8 +3,8 @@ app-server-1 ansible_host=datasupport-test.it.helsinki.fi
 [app_servers]
 app-server-1
 
-[production:children]
+[testing:children]
 app_servers
 
-[production:vars]
+[testing:vars]
 project_env=testing
