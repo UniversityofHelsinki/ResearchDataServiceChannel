@@ -83,7 +83,6 @@ element:
   default_empty_option_required: ''
   default_empty_option_optional: ''
   default_icheck: ''
-  default_google_maps_api_key: ''
   excluded_elements: {  }
 html_editor:
   disabled: false

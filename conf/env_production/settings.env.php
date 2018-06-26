@@ -18,5 +18,5 @@ $settings['trusted_host_patterns'] = array(
 /**
  * ESB API endpoint settings.
  */
-$config['esb']['url'] = 'https://esbpub2.it.helsinki.fi/devel/mildred/createticket';
-//$config['esb']['url'] = 'https://esbpub1.it.helsinki.fi/mildred/createticket';
+ //$config['esb']['url'] = 'https://esbpub2.it.helsinki.fi/devel/mildred/createticket';
+ $config['esb']['url'] = 'https://esbpub1.it.helsinki.fi/mildred/createticket';
