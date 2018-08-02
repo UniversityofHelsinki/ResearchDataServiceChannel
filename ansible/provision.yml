@@ -27,6 +27,18 @@
     - { role: jdauphant.nginx,            tags: [ 'nginx' ] }
 
   post_tasks:
+    - name: Ensure shared directory exists
+      file:
+        path: "{{ projects.default.root }}/shared"
+        state: directory
+
+    - name: Ensure shared files directory exists
+      file:
+        path: "{{ projects.default.root }}/shared/files"
+        state: directory
+        owner: nginx
+        group: nginx
+
     - template:
         src: settings.local.php.j2
         dest: "{{ projects.default.root }}/shared/settings.local.php"
