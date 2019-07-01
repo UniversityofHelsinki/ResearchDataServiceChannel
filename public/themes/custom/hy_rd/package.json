@@ -8,13 +8,24 @@
     "type": "git",
     "url": "git://github.com/UniversityofHelsinki/julkiset-sivut.git"
   },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "gulp": "gulp",
+    "gulp-prod": "gulp production",
+    "gulp-dev": "gulp development",
+    "postinstall": "find node_modules/ -name \"*.info\" -type f -delete"
+  },
+  "browserslist": [
+    "last 4 version",
+    "not dead"
+  ],
   "devDependencies": {
     "breakpoint-sass": "^2.7.0",
     "bower": "1.8.0",
-    "gulp": "^3.9.0",
+    "gulp": "^4.0.2",
     "gulp-autoprefixer": "^2.2.0",
     "gulp-prompt": "0.2.0",
-    "gulp-sass": "^2.3.2",
+    "gulp-sass": "^4.0.2",
     "gulp-watch": "4.3.11",
     "gulp-clean-css": "2.3.2",
     "node-sass-globbing": "0.0.23",
@@ -25,18 +36,15 @@
   "Dependencies": {
     "breakpoint-sass": "^2.7.0",
     "bower": "1.8.0",
-    "gulp": "^3.9.0",
-    "gulp-autoprefixer": "^2.2.0",
+    "gulp": "^4.0.2",
+    "gulp-autoprefixer": "6.1.0",
     "gulp-prompt": "0.2.0",
-    "gulp-sass": "^2.3.2",
+    "gulp-sass": "^4.0.2",
     "gulp-watch": "4.3.11",
     "gulp-clean-css": "2.3.2",
     "node-sass-globbing": "0.0.23",
     "normalize.css": "^3.0.0",
     "singularitygs": "^1.7.0",
     "run-sequence": "1.2.2"
-  },
-  "scripts": {
-    "postinstall": "find node_modules/ -name '*.info' -type f -delete"
   }
 }

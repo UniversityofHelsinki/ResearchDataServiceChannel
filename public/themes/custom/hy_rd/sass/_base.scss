@@ -48,6 +48,11 @@ hr {
   text-align: center;
 }
 
+.layout__region ul {
+  list-style: disc;
+  margin: 0 0 16px 16px;
+}
+
 @media screen and (max-width: $bp-small) {
   .row {
     display: inline-block;
