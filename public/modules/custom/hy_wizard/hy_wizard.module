@@ -140,3 +140,25 @@ function hy_wizard_add_content() {
 function hy_wizard_entity_delete(EntityInterface $entity) {
   drupal_set_message(t('You are not allowed to manually remove this vocabulary.'), 'error');
 }
+
+/**
+ * Implements hook_entity_insert().
+ */
+function hy_wizard_entity_insert(Drupal\Core\Entity\EntityInterface $entity) {
+  if($entity->getEntityType()->id() == 'taxonomy_term') {
+    if($entity->getVocabularyId() == 'hy_wizard') {
+      drupal_flush_all_caches();
+    }
+  }
+}
+
+/**
+ * Implements hook_entity_update().
+ */
+function hy_wizard_entity_update(Drupal\Core\Entity\EntityInterface $entity) {
+  if($entity->getEntityType()->id() == 'taxonomy_term') {
+    if($entity->getVocabularyId() == 'hy_wizard') {
+      drupal_flush_all_caches();
+    }
+  }
+}
