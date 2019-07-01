@@ -120,9 +120,7 @@ gulp.task('compile', function () {
   gulp.src('sass/**/*.scss')
     .pipe(sass(sass_config)
       .on('error', sass.logError))
-    .pipe(autoprefixer({
-      browsers: ['last 4 versions']
-    }))
+    .pipe(autoprefixer())
     .pipe(cleancss({compatibility: 'ie8', keepSpecialComments: 0}))
     .pipe(gulp.dest('css'));
 });
