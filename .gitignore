@@ -1,23 +1,16 @@
 # Ignore project files that should not be in version control
-/ansible/roles/*
-/bin
-/deploy
-/drush/contrib/
-/files
-/files_private
-/node_modules
-/public/*.*
-/public/core/
-/public/modules/contrib/
-/public/themes/contrib/
-/public/profiles/config_installer/
-/public/profiles/contrib/
-/public/libraries/
-/public/sites
-/tools/init-tools-status
-/vendor/
-
-artifact.tar.gz
+drush/contrib/
+files
+files_private
+node_modules
+public/core
+public/modules/contrib
+public/themes/contrib
+public/profiles/contrib
+public/libraries
+public/sites/default/files
+vendor
+private_files/
 
 # Ignore the folder created by PhpStorm
 .idea/*
@@ -25,3 +18,6 @@ artifact.tar.gz
 # Ignore OSX generated files
 .DS_Store
 ._*
+
+!*.gitkeep
+!*.keepme

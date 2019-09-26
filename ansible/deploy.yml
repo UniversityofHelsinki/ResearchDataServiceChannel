@@ -16,7 +16,7 @@
         depth: 1
 
     - name: "Build codebase for {{ project_env }} environment"
-      local_action: "command composer run-script build-{{ project_env }}"
+      local_action: "make build-{{ project_env }}"
       args:
         chdir: "{{ deploy_folder }}"
 
@@ -74,3 +74,5 @@
         - "cr"
         # Imports configuration changes.
         - "cim -y"
+        # Clears caches.
+        - "cr"

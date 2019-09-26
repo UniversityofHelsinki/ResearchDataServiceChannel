@@ -35,3 +35,5 @@ This will log you inside the Drupal Docker container and in the `public` folder:
 ```
 $ make shell
 ```
+
+COMPOSER_MEMORY_LIMIT=-1 composer req webflo/drupal-core-require-dev:^8.7.6 --ignore-platform-reqs
