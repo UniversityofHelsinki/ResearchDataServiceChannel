@@ -86,44 +86,6 @@
             "phpunit -c phpunit.xml.dist --testsuite unit"
         ],
         "test-unit": "@test",
-        "symlink-files": [
-            "mkdir -p public/sites/default/files",
-            "ln -sfn ../../../../files public/sites/default/files/public",
-            "ln -sfn ../../../../files_private public/sites/default/files/private"
-        ],
-        "update-deps": [
-            "@composer update --no-scripts --prefer-dist --no-suggest --ignore-platform-reqs --ansi"
-        ],
-        "build-ci": [
-            "@composer install --prefer-dist --no-suggest --optimize-autoloader --ignore-platform-reqs --ansi",
-            "@symlink-files",
-            "ln -sfn ../../../conf/settings.php public/sites/default/settings.php",
-            "ln -sfn ../../../conf/env_ci/services.env.yml public/sites/default/services.env.yml",
-            "ln -sfn ../../../conf/env_ci/settings.env.php public/sites/default/settings.env.php"
-        ],
-        "build-dev": [
-            "@composer install --prefer-dist --no-suggest --ignore-platform-reqs --ansi",
-            "chmod -R 0775 public/sites/default/",
-            "@symlink-files",
-            "ln -sfn ../../../conf/settings.php public/sites/default/settings.php",
-            "ln -sfn ../../../conf/env_development/services.env.yml public/sites/default/services.env.yml",
-            "ln -sfn ../../../conf/env_development/settings.env.php public/sites/default/settings.env.php"
-        ],
-        "build-testing": [
-            "@composer install --no-dev --prefer-dist --no-suggest --optimize-autoloader --ignore-platform-reqs --ansi",
-            "sudo chmod -R 0775 public/sites/default/",
-            "@symlink-files",
-            "ln -sfn ../../../conf/settings.php public/sites/default/settings.php",
-            "ln -sfn ../../../conf/env_testing/services.env.yml public/sites/default/services.env.yml",
-            "ln -sfn ../../../conf/env_testing/settings.env.php public/sites/default/settings.env.php"
-        ],
-        "build-production": [
-            "@composer install --no-dev --prefer-dist --no-suggest --optimize-autoloader --ignore-platform-reqs --ansi",
-            "@symlink-files",
-            "ln -sfn ../../../conf/settings.php public/sites/default/settings.php",
-            "ln -sfn ../../../conf/env_production/services.env.yml public/sites/default/services.env.yml",
-            "ln -sfn ../../../conf/env_production/settings.env.php public/sites/default/settings.env.php"
-        ],
         "artifact": [
             "tar -hczf artifact.tar.gz --files-from=conf/artifact.include --exclude-from=conf/artifact.exclude"
         ]

@@ -699,28 +699,15 @@ $settings['container_yamls'][] = __DIR__ . '/services.yml';
  * example.org, with all subdomains included.
  */
 
-// Database configuration for the project.
-$databases['default']['default'] = array (
-  'database' => 'database',
-  'username' => 'username',
-  'password' => 'password',
-  'prefix' => '',
-  'host' => 'localhost',
-  'port' => '3306',
-  'namespace' => 'Drupal\\Core\\Database\\Driver\\mysql',
-  'driver' => 'mysql',
-);
+// Settings for all environments
+if (file_exists(__DIR__ . '/all.settings.php')) {
+  include __DIR__ . '/all.settings.php';
+}
 
-// This hash is used to password hashing.
-#$settings['hash_salt'] = '';
-// Install profile to setup your site with preconfigured settings.
-$settings['install_profile'] = 'standard';
-// This folder includes Drupal configuration.
-$config_directories['sync'] = '../conf/cmi';
-// Public files path
-$settings['file_public_path'] = 'sites/default/files/public';
-// Private files path
-$settings['file_private_path']  = 'sites/default/files/private';
+// Services for all environments
+if (file_exists(__DIR__ . '/all.services.yml')) {
+  $settings['container_yamls'][] = __DIR__ . '/all.services.yml';
+}
 
 /**
  * Load environment specific configuration overrides, if available.
@@ -754,42 +741,16 @@ if (file_exists('sites/default/services.env.yml')) {
  *
  * Keep this code block at the end of this file to take full effect.
  */
-if (file_exists('sites/default/settings.local.php')) {
-  include 'sites/default/settings.local.php';
+if (file_exists(__DIR__ . '/settings.local.php')) {
+  include __DIR__ . '/settings.local.php';
 }
 
-/**
- * Amazee.io specific config overrides.
- */
-if (getenv('AMAZEEIO_SITENAME')){
-  $databases['default']['default'] = array(
-    'driver' => 'mysql',
-    'database' => getenv('AMAZEEIO_SITENAME'),
-    'username' => getenv('AMAZEEIO_DB_USERNAME'),
-    'password' => getenv('AMAZEEIO_DB_PASSWORD'),
-    'host' => getenv('AMAZEEIO_DB_HOST'),
-    'port' => getenv('AMAZEEIO_DB_PORT'),
-    'prefix' => '',
-  );
+// Last: This server specific services file.
+if (file_exists(__DIR__ . '/services.local.yml')) {
+  $settings['container_yamls'][] = __DIR__ . '/services.local.yml';
+}
 
-  // Base URL
-  if (getenv('AMAZEEIO_BASE_URL')) {
-    $base_url = getenv('AMAZEEIO_BASE_URL');
-  }
-
-  // Trusted Host Patterns, see https://www.drupal.org/node/2410395 for more information.
-  // If your site runs on multiple domains, you need to add these domains here
-  $settings['trusted_host_patterns'] = array(
-    '^' . str_replace('.', '\.', getenv('AMAZEEIO_SITE_URL')) . '$',
-  );
-
-  // Temp directory
-  if (getenv('AMAZEEIO_TMP_PATH')) {
-    $config['system.file']['path']['temporary'] = getenv('AMAZEEIO_TMP_PATH');
-  }
-
-  // Hash Salt
-  if (getenv('AMAZEEIO_HASH_SALT')) {
-    $settings['hash_salt'] = getenv('AMAZEEIO_HASH_SALT');
-  }
+// Amazee.io specific config overrides.
+if (getenv('AMAZEEIO_SITENAME')) {
+  include __DIR__ . '/amazeeio.settings.php';
 }
