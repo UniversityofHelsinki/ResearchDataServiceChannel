@@ -1,4 +1,6 @@
-# Research Data Service Channel
+# Research Data Services
+
+Listing research data services provided by the University of Helsinki with Drupal 8.
 
 ## Environments
 
