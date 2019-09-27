@@ -4,15 +4,10 @@ namespace Drupal\hy_samlauth\EventSubscriber;
 
 use Drupal\Core\Config\ConfigFactoryInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
-use Drupal\Core\Field\BaseFieldDefinition;
 use Drupal\Core\TypedData\TypedDataManagerInterface;
-use Drupal\hy_samlauth\Event\HySamlauthEvents;
 use Drupal\hy_samlauth\Event\HySamlauthUserSyncEvent;
 use Egulias\EmailValidator\EmailValidator;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
-use Drupal\user\PrivateTempStoreFactory;
-use Drupal\Core\Session\AccountInterface;
-use Drupal\Core\Session\SessionManagerInterface;
 use Symfony\Component\HttpFoundation\RequestStack;
 
 /**
@@ -95,7 +90,8 @@ class UserSyncEventSubscriber implements EventSubscriberInterface {
    */
   public function onUserSync(HySamlauthUserSyncEvent $event) {
     $session = $event->getSession();
-    print_r($session); 
+    // TODO what is this?
+    print_r($session);
     $this->requestStack->getCurrentRequest()->cookies->set(self::USER_NAME, $this->getAttributeByConfig('cn', $event));
     $this->requestStack->getCurrentRequest()->cookies->set(self::USER_EMAIL, $this->getAttributeByConfig('mail', $event));
     $this->requestStack->getCurrentRequest()->cookies->set('TEST-NAME', $this->getAttributeByConfig('urn:oid:0.9.2342.19200300.100.1.1', $event));
