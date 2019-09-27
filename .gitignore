@@ -1,8 +1,8 @@
 # Ignore project files that should not be in version control
+deploy
 drush/contrib/
 files
 files_private
-node_modules
 public/core
 public/modules/contrib
 public/themes/contrib

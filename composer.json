@@ -85,9 +85,6 @@
         "test": [
             "phpunit -c phpunit.xml.dist --testsuite unit"
         ],
-        "test-unit": "@test",
-        "artifact": [
-            "tar -hczf artifact.tar.gz --files-from=conf/artifact.include --exclude-from=conf/artifact.exclude"
-        ]
+        "test-unit": "@test"
     }
 }
