@@ -17,6 +17,7 @@ You need to have these applications installed to operate on all environments:
 - [Docker](https://github.com/druidfi/guidelines/blob/master/docs/docker.md)
 - [Stonehenge](https://github.com/druidfi/stonehenge)
 - For the new person: Your SSH public key needs to be added to servers
+- Tunnelblick VPN connection with valid HY user account
 
 ## Create and start the environment
 
@@ -36,4 +37,20 @@ This will log you inside the Drupal Docker container and in the `public` folder:
 $ make shell
 ```
 
-COMPOSER_MEMORY_LIMIT=-1 composer req webflo/drupal-core-require-dev:^8.7.6 --ignore-platform-reqs
+## Deploying
+
+Deploy to testing:
+
+```
+$ make deploy USER=your_username
+```
+
+Deploy to production:
+
+```
+$ make deploy ENV=production USER=your_username
+```
+
+## Provisioning servers
+
+See instructions [here](ansible/readme.md)

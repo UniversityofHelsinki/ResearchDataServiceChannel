@@ -1,6 +1,7 @@
-dev:
+self:
   host: datasupport.helsinki.fi
   root: /data/rds/public
   uri: 'https://datasupport.helsinki.fi'
+  user: valimaat
   ssh:
     options: '-o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no'
