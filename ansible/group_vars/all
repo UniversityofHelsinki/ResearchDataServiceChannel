@@ -26,10 +26,11 @@ composer_keep_updated: true
 # DRUSH
 #
 
-#drush_version: "8.1.15"
-#drush_keep_updated: yes
-#drush_force_update: no
-#drush_clone_depth: 0
+drush_launcher_install: false
+drush_install_from_source: true
+drush_source_install_version: "9.7.1"
+drush_keep_updated: true
+drush_force_update: true
 
 #
 # MARIADB / MYSQL
