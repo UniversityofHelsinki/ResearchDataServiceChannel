@@ -24,3 +24,4 @@ private_files/
 !*.keepme
 
 *.sql
+artifact.tar.gz
