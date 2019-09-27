@@ -10,7 +10,7 @@ $config_directories[CONFIG_SYNC_DIRECTORY] = '../conf/cmi';
 $settings['file_public_path'] = 'sites/default/files/public';
 
 // Private files path
-$settings['file_private_path']  = 'sites/default/files/private';
+$settings['file_private_path']  = FALSE;
 
 // Hash salt
 $settings['hash_salt'] = 'bvZQQ28Qq1xxTW7uEND-XWGIKso9tClM0nzWJ8xoYM9cG0j_a_mlH8thumoZiGDkRHIpPKCHGQ';
