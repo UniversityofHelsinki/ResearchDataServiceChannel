@@ -2,23 +2,23 @@ ANSIBLE_ROLES_PATH := ansible/roles
 
 PHONY += deploy
 deploy: ENV := testing
-deploy: USER := valimaat
+deploy: USER := marjuhko
 deploy: ## Deploy the app. Use ENV=production if deploying to production. Default ENV=testing
 	ansible-playbook -i ansible/inventory/$(ENV) ansible/deploy.yml --ask-become-pass -u $(USER) --check
 
 PHONY += provision-dry-run
 provision: ENV := testing
-provision: USER := valimaat
+provision: USER := marjuhko
 provision: ## Make provisioning
 	$(call step,Make dry run on provisioning...)
-	ansible-playbook -i ansible/inventory/$(ENV) ansible/provision.yml --ask-become-pass -u $(USER)
+	ansible-playbook -i ansible/inventory/$(ENV) ansible/provision.yml --become-user=root -u $(USER) --ask-become-pass
 
 PHONY += provision-dry-run
 provision-dry-run: ENV := testing
-provision-dry-run: USER := valimaat
+provision-dry-run: USER := marjuhko
 provision-dry-run: ## Make dry run on provisioning
 	$(call step,Make dry run on provisioning...)
-	ansible-playbook -i ansible/inventory/$(ENV) ansible/provision.yml --ask-become-pass -u $(USER) --check
+	ansible-playbook -i ansible/inventory/$(ENV) ansible/provision.yml --become-user=root -u $(USER) --ask-become-pass --check
 
 PHONY += ansible-install-roles
 ansible-install-roles: ## Install Ansible roles
