@@ -22,6 +22,7 @@
         "drupal/block_class": "^1.0@alpha",
         "drupal/core": "8.7.6",
         "drupal/ds": "3.3",
+        "drupal/externalauth": "1.1",
         "drupal/fico": "1.0",
         "drupal/google_analytics": "2.4",
         "drupal/libraries": "3.x-dev",
