@@ -1,4 +1,5 @@
 # Ignore project files that should not be in version control
+ansible/roles
 deploy
 drush/contrib/
 files
@@ -21,3 +22,5 @@ private_files/
 
 !*.gitkeep
 !*.keepme
+
+*.sql
