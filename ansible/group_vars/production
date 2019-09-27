@@ -12,7 +12,8 @@ projects_root: /data
 projects:
   default:
     root: "{{ projects_root }}/rds"
-    public_root: "{{ projects_root }}/rds/public"
+    current: "{{ projects_root }}/rds/current"
+    public_root: "{{ projects_root }}/rds/current/public"
     hosts:
       - datasupport.helsinki.fi
     key: "/etc/pki/tls/private/datasupport.helsinki.fi.key"
