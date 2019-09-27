@@ -28,6 +28,7 @@
         "drupal/pathauto": "1.0",
         "drupal/restui": "^1.17",
         "drupal/samlauth": "^2.0@alpha",
+        "drupal/stage_file_proxy": "^1.0",
         "drupal/swiftmailer": "^1.0@beta",
         "drupal/system_status": "^2.8",
         "drupal/token": "^1.5",

@@ -8,7 +8,7 @@ services:
     image: "${DRUPAL_IMAGE}"
     environment:
       # If you want to use stage_file_proxy, uncomment following line and add the production url of your website:
-      #AMAZEEIO_PRODUCTION_URL: 'http://www.mysite.fi'
+      AMAZEEIO_PRODUCTION_URL: 'https://datasupport.helsinki.fi/'
       # APC Support is by default enabled, but in some cases it can make issues, change to 0 to disable:
       APC: 1
       VIRTUAL_HOST: *hostname
