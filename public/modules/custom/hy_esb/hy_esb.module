@@ -7,10 +7,7 @@
 
 use Drupal\Core\Routing\RouteMatchInterface;
 use Drupal\Core\Form\FormStateInterface;
-use Drupal\webform\WebformSubmissionInterface;
 use Drupal\hy_samlauth\SamlService;
-use Drupal\hy_samlauth\Event\HySamlauthUserSyncEvent;
-use Symfony\Component\HttpFoundation\Session;
 
 /**
  * Implements hook_help().
@@ -32,7 +29,7 @@ function hy_esb_help($route_name, RouteMatchInterface $route_match) {
  * Implements hook_form_alter().
  */
 function hy_esb_form_alter(&$form, FormStateInterface &$form_state, $form_id) {
-  if ($form['#webform_id'] !== 'service_order_form') {
+  if (isset($form['#webform_id']) && $form['#webform_id'] !== 'service_order_form') {
     return;
   }
 
@@ -41,7 +38,8 @@ function hy_esb_form_alter(&$form, FormStateInterface &$form_state, $form_id) {
   $tempstore = \Drupal::service('user.private_tempstore')->get('hy_samlauth');
   $name = $tempstore->get(SamlService::SESSION_SAML_NAME);
   $email = $tempstore->get(SamlService::SESSION_SAML_EMAIL);
-  $group = ''; // $tempstore->get(SamlService::SESSION_SAML_GROUP);
+  // $tempstore->get(SamlService::SESSION_SAML_GROUP);
+  $group = '';
   $user = $tempstore->get(SamlService::SESSION_SAML_USER);
   $phone = '';
 
@@ -72,6 +70,9 @@ function hy_esb_form_validate($form, FormStateInterface $form_state) {
   $form_state->setValue('user', $tempstore->get(SamlService::SESSION_SAML_USER));
 }
 
+/**
+ *
+ */
 function hy_esb_theme($existing, $type, $theme, $path) {
   return [
     'user_information' => [
@@ -80,7 +81,7 @@ function hy_esb_theme($existing, $type, $theme, $path) {
         'email' => NULL,
         'group' => NULL,
         'user' => NULL,
-        'phone' => NULL
+        'phone' => NULL,
       ],
     ],
   ];

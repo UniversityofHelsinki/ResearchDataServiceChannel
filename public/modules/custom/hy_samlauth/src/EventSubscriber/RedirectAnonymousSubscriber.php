@@ -1,4 +1,5 @@
 <?php
+
 namespace Drupal\hy_samlauth\EventSubscriber;
 
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -10,7 +11,6 @@ use Symfony\Component\HttpFoundation\RequestStack;
 use Drupal\Core\Path\PathValidator;
 use Drupal\hy_samlauth\SamlService;
 
-
 /**
  * Event subscriber subscribing to KernelEvents::REQUEST.
  */
@@ -19,11 +19,17 @@ class RedirectAnonymousSubscriber implements EventSubscriberInterface {
   protected $requestStack;
   protected $pathValidator;
 
+  /**
+   *
+   */
   public function __construct(RequestStack $request_stack, PathValidator $pathValidator) {
     $this->pathValidator = $pathValidator;
     $this->requestStack = $request_stack;
   }
 
+  /**
+   *
+   */
   public function checkAuthStatus(GetResponseEvent $event) {
 
     // Is current path correct path?
@@ -45,8 +51,11 @@ class RedirectAnonymousSubscriber implements EventSubscriberInterface {
     }
   }
 
+  /**
+   *
+   */
   public static function getSubscribedEvents() {
-    $events[KernelEvents::REQUEST][] = array('checkAuthStatus');
+    $events[KernelEvents::REQUEST][] = ['checkAuthStatus'];
     return $events;
   }
 

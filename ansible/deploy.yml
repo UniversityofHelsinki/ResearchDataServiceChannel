@@ -3,25 +3,21 @@
   gather_facts: false
   vars:
     deploy_folder: "../deploy"
+    repo: "git@github.com:UniversityofHelsinki/ResearchDataServiceChannel.git"
 
   tasks:
 
     - name: "Get code from Github ({{ git_branch }} branch)"
       local_action:
         module: git
-        repo: "git@github.com:UniversityofHelsinki/ResearchDataServiceChannel.git"
+        repo: "{{ repo }}"
         dest: "{{ deploy_folder }}"
         version: "{{ git_branch }}"
         force: yes
         depth: 1
 
-    - name: "Build codebase for {{ project_env }} environment"
-      local_action: "command composer run-script build-{{ project_env }}"
-      args:
-        chdir: "{{ deploy_folder }}"
-
-    - name: Create release artifact
-      local_action: "command composer run-script artifact"
+    - name: "Create release artifact for {{ project_env }} environment"
+      local_action: "command make artifact ENV={{ project_env }}"
       args:
         chdir: "{{ deploy_folder }}"
 
@@ -70,7 +66,7 @@
       with_items:
         # Performs database updates.
         - "updb"
-        # Clears caches.
-        - "cr"
         # Imports configuration changes.
         - "cim -y"
+        # Clears caches.
+        - "cr"
