@@ -32,7 +32,7 @@ function hy_esb_help($route_name, RouteMatchInterface $route_match) {
  * Implements hook_form_alter().
  */
 function hy_esb_form_alter(&$form, FormStateInterface &$form_state, $form_id) {
-  if ($form['#webform_id'] !== 'service_order_form') {
+  if (isset($form['#webform_id']) && $form['#webform_id'] !== 'service_order_form') {
     return;
   }
 
