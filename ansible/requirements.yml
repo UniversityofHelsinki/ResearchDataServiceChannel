@@ -1,24 +1,20 @@
 ---
 - src: geerlingguy.composer
-  version: 1.6.1
-#  version: 1.7.6
-- src: geerlingguy.drush
-  version: 2.0.1
+  version: 1.7.6
+#- src: geerlingguy.drush
 #  version: 3.1.2
 - src: geerlingguy.git
   version: 2.0.5
 - src: geerlingguy.mysql
   version: 2.9.5
 - src: geerlingguy.php
-  version: 3.5.0
-#  version: 3.7.0
+  version: 3.7.0
 - src: geerlingguy.php-mysql
   version: 2.0.2
 - src: geerlingguy.php-pecl
   version: 1.4.2
 - src: geerlingguy.php-versions
-  version: 2.0.0
-#  version: 3.1.1
+  version: 3.1.1
 - src: geerlingguy.repo-epel
   version: 1.2.4
 - src: geerlingguy.repo-remi

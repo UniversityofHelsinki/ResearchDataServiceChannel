@@ -4,7 +4,7 @@ PHONY += deploy
 deploy: ENV := testing
 deploy: USER := marjuhko
 deploy: ## Deploy the app. Use ENV=production if deploying to production. Default ENV=testing
-	ansible-playbook -i ansible/inventory/$(ENV) ansible/deploy.yml --ask-become-pass -u $(USER) --check
+	ansible-playbook -i ansible/inventory/$(ENV) ansible/deploy.yml --become-user=root -u $(USER) --ask-become-pass
 
 PHONY += provision-dry-run
 provision: ENV := testing
