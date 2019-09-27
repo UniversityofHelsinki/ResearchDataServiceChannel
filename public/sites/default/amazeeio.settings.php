@@ -30,16 +30,3 @@ if (getenv('AMAZEEIO_TMP_PATH')) {
 if (getenv('AMAZEEIO_HASH_SALT')) {
   $settings['hash_salt'] = getenv('AMAZEEIO_HASH_SALT');
 }
-
-// Varnish & Reverse proxy settings
-if (getenv('AMAZEEIO_VARNISH_HOSTS') && getenv('AMAZEEIO_VARNISH_SECRET')) {
-  $varnish_hosts = explode(',', getenv('AMAZEEIO_VARNISH_HOSTS'));
-  array_walk($varnish_hosts, function(&$value, $key) { $value .= ':6082'; });
-
-  $settings['reverse_proxy'] = TRUE;
-  $settings['reverse_proxy_addresses'] = array_merge(explode(',', getenv('AMAZEEIO_VARNISH_HOSTS')), array('127.0.0.1'));
-
-  $config['varnish.settings']['varnish_control_terminal'] = implode($varnish_hosts, " ");
-  $config['varnish.settings']['varnish_control_key'] = getenv('AMAZEEIO_VARNISH_SECRET');
-  $config['varnish.settings']['varnish_version'] = 4;
-}
