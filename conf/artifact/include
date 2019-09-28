@@ -2,3 +2,5 @@ conf/cmi
 drush
 public
 vendor
+composer.json
+composer.lock
