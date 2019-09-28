@@ -4,6 +4,7 @@
   vars:
     deploy_folder: "../deploy"
     repo: "git@github.com:UniversityofHelsinki/ResearchDataServiceChannel.git"
+    backups_path: "{{ projects.default.root }}/backups"
 
   tasks:
 
@@ -40,6 +41,9 @@
 
     - block:
 
+ #       - name: Create database backup
+ #         shell: drush sql-dump > {{ backups_path }}/{{ timestamp }}.sql
+
         - name: Make sure releases folder exists
           file:
             path: "{{ projects.default.root }}/releases/{{ timestamp }}"
@@ -50,14 +54,16 @@
           unarchive:
             src: "{{ deploy_folder }}/artifact.tar.gz"
             dest: "{{ projects.default.root }}/releases/{{ timestamp }}"
+            group: root
+            owner: root
 
-        - name: "Make sure release has correct permissions"
-          file:
-            dest: "{{ projects.default.root }}/releases/{{ timestamp }}"
-            owner: "{{ nginx_user }}"
-            group: "{{ nginx_group }}"
-            mode: 0775
-            recurse: yes
+#        - name: "Make sure release has correct permissions"
+#          file:
+#            dest: "{{ projects.default.root }}/releases/{{ timestamp }}"
+#            owner: "{{ nginx_user }}"
+#            group: "{{ nginx_group }}"
+#            mode: 0775
+#            recurse: yes
 
         - name: "Set symlinks"
           file:
@@ -72,17 +78,17 @@
       become: yes
 
     # Executes drush commands
-#    - name: Run drush commands
-#      shell: drush -y -r {{ projects.default.public_root }} {{ item }}
-#      with_items:
-#        # Performs database updates.
-#        - "updb"
-#        # Imports configuration changes.
-#        - "cim -y"
-#        # Clears caches.
-#        - "cr"
+    - name: Run drush commands
+      shell: drush -y -r {{ projects.default.public_root }} {{ item }}
+      with_items:
+        # Performs database updates.
+        - "updb"
+        # Imports configuration changes.
+        - "cim -y"
+        # Clears caches.
+        - "cr"
 
-    - name: Cleanup
+    - name: Cleanup (keep 10 latest releases)
       shell: ls -dt releases/*/ | tail -n +11 | xargs rm -rf
       args:
         chdir: "{{ projects.default.root }}"
