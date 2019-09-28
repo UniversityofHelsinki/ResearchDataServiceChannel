@@ -26,11 +26,8 @@ composer_keep_updated: true
 # DRUSH
 #
 
-drush_launcher_install: false
-drush_install_from_source: true
-drush_source_install_version: "9.7.1"
-drush_keep_updated: true
-drush_force_update: true
+# Use composer from project
+drush_launcher_install: true
 
 #
 # MARIADB / MYSQL
