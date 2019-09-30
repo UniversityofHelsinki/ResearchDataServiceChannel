@@ -48,3 +48,4 @@
     - template:
         src: settings.local.php.j2
         dest: "{{ projects.default.root }}/shared/settings.local.php"
+        backup: yes
