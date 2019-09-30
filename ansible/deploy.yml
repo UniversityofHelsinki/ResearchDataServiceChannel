@@ -39,10 +39,11 @@
     - name: Get timestamp for the release
       set_fact: timestamp="{{ ansible_date_time.epoch }}"
 
-    - block:
+    - name: Create database backup
+      shell: "/usr/local/bin/drush -r {{ projects.default.public_root }} sql-dump > {{ backups_path }}/{{ timestamp }}.sql"
+      become: yes
 
- #       - name: Create database backup
- #         shell: drush sql-dump > {{ backups_path }}/{{ timestamp }}.sql
+    - block:
 
         - name: Make sure releases folder exists
           file:
@@ -57,14 +58,6 @@
             group: root
             owner: root
 
-#        - name: "Make sure release has correct permissions"
-#          file:
-#            dest: "{{ projects.default.root }}/releases/{{ timestamp }}"
-#            owner: "{{ nginx_user }}"
-#            group: "{{ nginx_group }}"
-#            mode: 0775
-#            recurse: yes
-
         - name: "Set symlinks"
           file:
             src: "{{ item.src }}"
@@ -77,16 +70,12 @@
 
       become: yes
 
-    # Executes drush commands
     - name: Run drush commands
       shell: drush -y -r {{ projects.default.public_root }} {{ item }}
       with_items:
-        # Performs database updates.
-        - "updb"
-        # Imports configuration changes.
-        - "cim -y"
-        # Clears caches.
-        - "cr"
+        - "updb -y" # Performs database updates.
+        - "cim -y"  # Imports configuration changes.
+        - "cr"      # Clears caches.
 
     - name: Cleanup (keep 10 latest releases)
       shell: ls -dt releases/*/ | tail -n +11 | xargs rm -rf

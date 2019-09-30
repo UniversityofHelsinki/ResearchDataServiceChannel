@@ -1,24 +1,35 @@
 ANSIBLE_ROLES_PATH := ansible/roles
+WARNING_USERNAME := USERNAME is required, e.g. make target USER=johnsmith
 
 PHONY += deploy
 deploy: ENV := testing
-deploy: USER := marjuhko
 deploy: ## Deploy the app. Use ENV=production if deploying to production. Default ENV=testing
-	ansible-playbook -i ansible/inventory/$(ENV) ansible/deploy.yml --become-user=root -u $(USER) --ask-become-pass
+ifndef USERNAME
+	$(call warn,$(WARNING_USERNAME))
+else
+	$(call step,Deploy to $(ENV) with user $(USERNAME) ...)
+	ansible-playbook -i ansible/inventory/$(ENV) ansible/deploy.yml --become-user=root -u $(USERNAME) --ask-become-pass
+endif
 
 PHONY += provision-dry-run
 provision: ENV := testing
-provision: USER := marjuhko
 provision: ## Make provisioning
+ifndef USERNAME
+	$(call warn,$(WARNING_USERNAME))
+else
 	$(call step,Make dry run on provisioning...)
-	ansible-playbook -i ansible/inventory/$(ENV) ansible/provision.yml --become-user=root -u $(USER) --ask-become-pass
+	ansible-playbook -i ansible/inventory/$(ENV) ansible/provision.yml --become-user=root -u $(USERNAME) --ask-become-pass
+endif
 
 PHONY += provision-dry-run
 provision-dry-run: ENV := testing
-provision-dry-run: USER := marjuhko
 provision-dry-run: ## Make dry run on provisioning
+ifndef USERNAME
+	$(call warn,$(WARNING_USERNAME))
+else
 	$(call step,Make dry run on provisioning...)
-	ansible-playbook -i ansible/inventory/$(ENV) ansible/provision.yml --become-user=root -u $(USER) --ask-become-pass --check
+	ansible-playbook -i ansible/inventory/$(ENV) ansible/provision.yml --become-user=root -u $(USERNAME) --ask-become-pass --check
+endif
 
 PHONY += ansible-install-roles
 ansible-install-roles: ## Install Ansible roles

@@ -42,13 +42,13 @@ $ make shell
 Deploy to testing:
 
 ```
-$ make deploy USER=your_username
+$ make deploy USERNAME=your_username
 ```
 
 Deploy to production:
 
 ```
-$ make deploy ENV=production USER=your_username
+$ make deploy ENV=production USERNAME=your_username
 ```
 
 ## Provisioning servers
