@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d335723f71052b06531b766a9415214b",
+    "content-hash": "10bbdd9f107b0a08a4726ab16b36a37b",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -4358,16 +4358,16 @@
         },
         {
             "name": "onelogin/php-saml",
-            "version": "2.16.0",
+            "version": "2.17.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/onelogin/php-saml.git",
-                "reference": "e16161d89067866cabb6dd4f5ccd1437b6a64eda"
+                "reference": "2aaa5aaa9aa6d6887fbd15be0013dd7fac793fc9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/onelogin/php-saml/zipball/e16161d89067866cabb6dd4f5ccd1437b6a64eda",
-                "reference": "e16161d89067866cabb6dd4f5ccd1437b6a64eda",
+                "url": "https://api.github.com/repos/onelogin/php-saml/zipball/2aaa5aaa9aa6d6887fbd15be0013dd7fac793fc9",
+                "reference": "2aaa5aaa9aa6d6887fbd15be0013dd7fac793fc9",
                 "shasum": ""
             },
             "require": {
@@ -4407,7 +4407,7 @@
                 "onelogin",
                 "saml"
             ],
-            "time": "2019-06-24T17:43:15+00:00"
+            "time": "2019-09-11T13:55:25+00:00"
         },
         {
             "name": "paragonie/random_compat",
