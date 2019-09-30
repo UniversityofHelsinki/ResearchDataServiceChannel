@@ -73,7 +73,7 @@
     - name: Run drush commands
       shell: drush -y -r {{ projects.default.public_root }} {{ item }}
       with_items:
-        - "updb"    # Performs database updates.
+        - "updb -y" # Performs database updates.
         - "cim -y"  # Imports configuration changes.
         - "cr"      # Clears caches.
 
