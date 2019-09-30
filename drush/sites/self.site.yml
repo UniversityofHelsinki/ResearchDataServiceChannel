@@ -2,7 +2,9 @@ testing:
   host: datasupport-test.it.helsinki.fi
   root: /data/rds/current/public
   uri: 'https://datasupport-test.it.helsinki.fi'
+  user: ${env.PROJECT_SSH_USER}
 production:
   host: datasupport.helsinki.fi
   root: /data/rds/current/public
   uri: 'https://datasupport.helsinki.fi'
+  user: ${env.PROJECT_SSH_USER}
