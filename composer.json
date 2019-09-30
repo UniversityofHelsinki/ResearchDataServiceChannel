@@ -55,10 +55,10 @@
         },
         "patches": {
             "drupal/core": {
-                "Cannot rename tmp_2362aemenu_link_content_revision to menu_link_content_revision\nPrimary tabs\nView(active tab)\nEdit\n": "https://www.drupal.org/files/issues/2019-07-09/cannot_rename_tmp_2362aemenu_link_content_revision_to_menu_link_content_revision-3039586-83.patch"
+                "https://www.drupal.org/i/3039586": "https://www.drupal.org/files/issues/2019-07-09/cannot_rename_tmp_2362aemenu_link_content_revision_to_menu_link_content_revision-3039586-83.patch"
             },
             "drupal/samlauth": {
-                "2860473-11": "https://www.drupal.org/files/issues/2860473-11.patch"
+                "https://www.drupal.org/i/2860473": "https://www.drupal.org/files/issues/2860473-11.patch"
             }
         }
     },

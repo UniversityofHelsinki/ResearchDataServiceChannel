@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "10bbdd9f107b0a08a4726ab16b36a37b",
+    "content-hash": "f194a977f32c8398c471b42aeff5156a",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -2492,7 +2492,7 @@
                     "merge-extra": false
                 },
                 "patches_applied": {
-                    "Cannot rename tmp_2362aemenu_link_content_revision to menu_link_content_revision\nPrimary tabs\nView(active tab)\nEdit\n": "https://www.drupal.org/files/issues/2019-07-09/cannot_rename_tmp_2362aemenu_link_content_revision_to_menu_link_content_revision-3039586-83.patch"
+                    "https://www.drupal.org/i/3039586": "https://www.drupal.org/files/issues/2019-07-09/cannot_rename_tmp_2362aemenu_link_content_revision_to_menu_link_content_revision-3039586-83.patch"
                 }
             },
             "autoload": {
@@ -3126,7 +3126,7 @@
                     }
                 },
                 "patches_applied": {
-                    "2860473-11": "https://www.drupal.org/files/issues/2860473-11.patch"
+                    "https://www.drupal.org/i/2860473": "https://www.drupal.org/files/issues/2860473-11.patch"
                 }
             },
             "notification-url": "https://packages.drupal.org/8/downloads",
