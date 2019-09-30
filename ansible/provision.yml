@@ -27,9 +27,15 @@
     - { role: jdauphant.nginx,            tags: [ 'nginx' ] }
 
   post_tasks:
+
     - name: Ensure shared directory exists
       file:
         path: "{{ projects.default.root }}/shared"
+        state: directory
+
+    - name: Ensure backups directory exists
+      file:
+        path: "{{ projects.default.root }}/backups"
         state: directory
 
     - name: Ensure shared files directory exists

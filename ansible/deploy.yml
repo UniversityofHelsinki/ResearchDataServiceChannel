@@ -3,25 +3,33 @@
   gather_facts: false
   vars:
     deploy_folder: "../deploy"
+    repo: "git@github.com:UniversityofHelsinki/ResearchDataServiceChannel.git"
+    backups_path: "{{ projects.default.root }}/backups"
 
   tasks:
 
     - name: "Get code from Github ({{ git_branch }} branch)"
       local_action:
         module: git
-        repo: "git@github.com:UniversityofHelsinki/ResearchDataServiceChannel.git"
+        repo: "{{ repo }}"
         dest: "{{ deploy_folder }}"
         version: "{{ git_branch }}"
         force: yes
         depth: 1
 
-    - name: "Build codebase for {{ project_env }} environment"
-      local_action: "command composer run-script build-{{ project_env }}"
+    - name: "Build code for {{ project_env }} environment"
+      local_action: "command composer install --no-dev --ignore-platform-reqs"
       args:
         chdir: "{{ deploy_folder }}"
 
-    - name: Create release artifact
-      local_action: "command composer run-script artifact"
+    - name: "Copy settings.env.php for {{ project_env }} environment"
+      local_action: "command cp ../conf/{{ project_env }}.settings.php {{ deploy_folder }}/public/sites/default/settings.env.php"
+
+    - name: "Copy services.env.yml for {{ project_env }} environment"
+      local_action: "command cp ../conf/{{ project_env }}.services.yml {{ deploy_folder }}/public/sites/default/services.env.yml"
+
+    - name: "Create release artifact for {{ project_env }} environment"
+      local_action: "command tar -hczf artifact.tar.gz --files-from=conf/artifact/include --exclude-from=conf/artifact/exclude"
       args:
         chdir: "{{ deploy_folder }}"
 
@@ -33,6 +41,9 @@
 
     - block:
 
+ #       - name: Create database backup
+ #         shell: drush sql-dump > {{ backups_path }}/{{ timestamp }}.sql
+
         - name: Make sure releases folder exists
           file:
             path: "{{ projects.default.root }}/releases/{{ timestamp }}"
@@ -43,14 +54,16 @@
           unarchive:
             src: "{{ deploy_folder }}/artifact.tar.gz"
             dest: "{{ projects.default.root }}/releases/{{ timestamp }}"
+            group: root
+            owner: root
 
-        - name: "Make sure release has correct permissions"
-          file:
-            dest: "{{ projects.default.root }}/releases/{{ timestamp }}"
-            owner: "{{ nginx_user }}"
-            group: "{{ nginx_group }}"
-            mode: 0775
-            recurse: yes
+#        - name: "Make sure release has correct permissions"
+#          file:
+#            dest: "{{ projects.default.root }}/releases/{{ timestamp }}"
+#            owner: "{{ nginx_user }}"
+#            group: "{{ nginx_group }}"
+#            mode: 0775
+#            recurse: yes
 
         - name: "Set symlinks"
           file:
@@ -58,7 +71,7 @@
             dest: "{{ item.dest }}"
             state: link
           with_items:
-            - { src: "{{ projects.default.root }}/releases/{{ timestamp }}/public", dest: "{{ projects.default.public_root }}" }
+            - { src: "{{ projects.default.root }}/releases/{{ timestamp }}", dest: "{{ projects.default.current }}" }
             - { src: "{{ projects.default.root }}/shared/settings.local.php", dest: "{{ projects.default.public_root }}/sites/default/settings.local.php" }
             - { src: "{{ projects.default.root }}/shared/files", dest: "{{ projects.default.public_root }}/sites/default/files" }
 
@@ -70,7 +83,13 @@
       with_items:
         # Performs database updates.
         - "updb"
-        # Clears caches.
-        - "cr"
         # Imports configuration changes.
         - "cim -y"
+        # Clears caches.
+        - "cr"
+
+    - name: Cleanup (keep 10 latest releases)
+      shell: ls -dt releases/*/ | tail -n +11 | xargs rm -rf
+      args:
+        chdir: "{{ projects.default.root }}"
+      become: yes

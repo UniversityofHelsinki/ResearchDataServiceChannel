@@ -109,8 +109,7 @@ function hy_wizard_form_taxonomy_term_hy_wizard_form_alter(&$form, $form_state) 
  * Implements hook_twig_theme().
  */
 function hy_wizard_theme($existing, $type, $theme, $path) {
-  return
-  [
+  return [
     'hy_wizard' => [
       'variables' => [
         'data' => [],
@@ -144,9 +143,9 @@ function hy_wizard_entity_delete(EntityInterface $entity) {
 /**
  * Implements hook_entity_insert().
  */
-function hy_wizard_entity_insert(Drupal\Core\Entity\EntityInterface $entity) {
-  if($entity->getEntityType()->id() == 'taxonomy_term') {
-    if($entity->getVocabularyId() == 'hy_wizard') {
+function hy_wizard_entity_insert(EntityInterface $entity) {
+  if ($entity->getEntityType()->id() == 'taxonomy_term') {
+    if ($entity->getVocabularyId() == 'hy_wizard') {
       drupal_flush_all_caches();
     }
   }
@@ -155,9 +154,9 @@ function hy_wizard_entity_insert(Drupal\Core\Entity\EntityInterface $entity) {
 /**
  * Implements hook_entity_update().
  */
-function hy_wizard_entity_update(Drupal\Core\Entity\EntityInterface $entity) {
-  if($entity->getEntityType()->id() == 'taxonomy_term') {
-    if($entity->getVocabularyId() == 'hy_wizard') {
+function hy_wizard_entity_update(EntityInterface $entity) {
+  if ($entity->getEntityType()->id() == 'taxonomy_term') {
+    if ($entity->getVocabularyId() == 'hy_wizard') {
       drupal_flush_all_caches();
     }
   }

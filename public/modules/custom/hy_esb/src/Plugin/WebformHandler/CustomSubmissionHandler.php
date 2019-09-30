@@ -96,7 +96,6 @@ class CustomSubmissionHandler extends WebformHandlerBase {
     // @todo Marko sends out a REST call for HY with correct data
     // @todo Marko checks REST call status
     // @todo Marko adds webform status accordingly
-
     // Load service node.
     $service = Node::load($data['service']);
     $service_url = Url::fromRoute('entity.node.canonical', ['node' => $service->id()])->setAbsolute()->toString();
@@ -135,7 +134,7 @@ class CustomSubmissionHandler extends WebformHandlerBase {
       return;
     }
 
-    // All good, set webform status 'ordered'
+    // All good, set webform status 'ordered'.
     /*$submission_data = $webform_submission->getData();
     $submission_data['some_fancy_pants_status'] = 'ordered';
     $webform_submission->setData($submission_data);

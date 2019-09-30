@@ -5,11 +5,6 @@
  * Contains install, uninstall and update functions for Hy Wizard -module.
  */
 
-// @todo Change these constants to be used from an install file.
-define('HY_WIZARD_VOCABULARY_NAME', 'Wizard');
-define('HY_WIZARD_VOCABULARY_VID', 'hy_wizard');
-define('HY_WIZARD_VOCABULARY_DESCRIPTION', 'Used to create hierarchy of questions');
-
 use Drupal\taxonomy\Entity\Vocabulary;
 
 /**
