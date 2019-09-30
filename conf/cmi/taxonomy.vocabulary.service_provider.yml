@@ -5,5 +5,4 @@ dependencies: {  }
 name: 'Service provider'
 vid: service_provider
 description: ''
-hierarchy: 0
 weight: 0

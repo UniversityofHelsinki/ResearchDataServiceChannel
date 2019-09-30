@@ -5,5 +5,4 @@ dependencies: {  }
 name: 'Project members'' access to UH network'
 vid: project_members_access_to_uh_net
 description: ''
-hierarchy: 0
 weight: 0

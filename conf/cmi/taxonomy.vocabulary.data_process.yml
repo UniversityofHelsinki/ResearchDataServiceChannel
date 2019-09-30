@@ -5,5 +5,4 @@ dependencies: {  }
 name: 'Data process'
 vid: data_process
 description: ''
-hierarchy: 0
 weight: 0

@@ -5,5 +5,4 @@ dependencies: {  }
 name: Wizard
 vid: hy_wizard
 description: 'Used to create hierarchy of questions'
-hierarchy: 0
 weight: 0

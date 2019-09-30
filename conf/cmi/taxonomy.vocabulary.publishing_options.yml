@@ -5,5 +5,4 @@ dependencies: {  }
 name: 'Publishing options'
 vid: publishing_options
 description: ''
-hierarchy: 0
 weight: 0

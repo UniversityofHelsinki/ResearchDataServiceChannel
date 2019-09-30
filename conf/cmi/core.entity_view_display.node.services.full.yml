@@ -15,9 +15,12 @@ dependencies:
     - field.field.node.services.field_how_to_access
     - field.field.node.services.field_image
     - field.field.node.services.field_links
+    - field.field.node.services.field_modification_frequency
     - field.field.node.services.field_project_members_access_to_
     - field.field.node.services.field_project_phase
     - field.field.node.services.field_publishing_options
+    - field.field.node.services.field_security_level
+    - field.field.node.services.field_service_provider
     - field.field.node.services.field_service_type
     - field.field.node.services.field_who_is_this_for
     - node.type.services
@@ -142,9 +145,12 @@ hidden:
   field_data_sensitivity: true
   field_data_size: true
   field_efecte_id: true
+  field_modification_frequency: true
   field_project_members_access_to_: true
   field_project_phase: true
   field_publishing_options: true
+  field_security_level: true
+  field_service_provider: true
   field_service_type: true
   langcode: true
   links: true
