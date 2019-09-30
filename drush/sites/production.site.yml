@@ -1,6 +1,0 @@
-self:
-  host: datasupport.helsinki.fi
-  root: /data/rds/public
-  uri: 'https://datasupport.helsinki.fi'
-  ssh:
-    options: '-o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no'

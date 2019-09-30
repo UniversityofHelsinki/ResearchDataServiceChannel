@@ -1,6 +1,0 @@
-dev:
-  host: datasupport-test.it.helsinki.fi
-  root: /data/rds/public
-  uri: 'https://datasupport-test.it.helsinki.fi'
-  ssh:
-    options: '-o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no'
