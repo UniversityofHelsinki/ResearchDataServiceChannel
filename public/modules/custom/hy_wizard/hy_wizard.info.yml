@@ -3,3 +3,5 @@ type: module
 description: Wizard for querying content by questions
 core: 8.x
 package: Helsinki University
+dependencies:
+  - drupal:rest
