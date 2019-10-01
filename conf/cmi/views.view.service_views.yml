@@ -410,7 +410,7 @@ display:
         path:
           id: path
           table: node
-          field: path
+          field: view_node
           relationship: none
           group_type: group
           admin_label: ''
@@ -457,7 +457,8 @@ display:
           hide_alter_empty: true
           absolute: false
           entity_type: node
-          plugin_id: node_path
+          plugin_id: entity_link
+          output_url_as_text: true
       filters:
         status:
           value: '1'
@@ -763,7 +764,7 @@ display:
             value: "<h2>Service catalogue</h2>\n<p>Here you can browse & search all the services we provide. You can narrow down the selection with the filters below.</p>"
             format: full_html
           plugin_id: text
-      use_ajax: true
+      use_ajax: false
       menu:
         type: normal
         title: 'Service catalogue'

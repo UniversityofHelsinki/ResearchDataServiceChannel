@@ -5,5 +5,4 @@ dependencies: {  }
 name: 'Data size'
 vid: data_size
 description: ''
-hierarchy: 0
 weight: 0

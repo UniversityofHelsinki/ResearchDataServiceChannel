@@ -5,6 +5,9 @@ dependencies:
   config:
     - core.entity_view_mode.node.teaser
     - field.field.node.basic_page.body
+    - field.field.node.basic_page.field_hero_body
+    - field.field.node.basic_page.field_hero_image
+    - field.field.node.basic_page.field_hero_title
     - node.type.basic_page
   module:
     - text

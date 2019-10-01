@@ -5,5 +5,4 @@ dependencies: {  }
 name: 'Data sensitivity'
 vid: data_sensitivity
 description: ''
-hierarchy: 0
 weight: 0
