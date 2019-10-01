@@ -15,9 +15,6 @@ use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Drupal\user\UserInterface;
 
-/**
- *
- */
 class SamlService extends OriginalSamlService {
 
   const SESS_VALUE_KEY = 'postLoginLogoutDestination';
@@ -28,15 +25,15 @@ class SamlService extends OriginalSamlService {
   const SESSION_SAML_GROUP = 'UHRDS_USER_GROUP';
 
   /**
-   * @var \Symfony\Component\HttpFoundation\RequestStack
+   * @var RequestStack
    */
   protected $requestStack;
   /**
-   * @var \Symfony\Component\HttpFoundation\Session\Session
+   * @var Session
    */
   protected $session;
   /**
-   * @var \Drupal\Core\Path\PathValidator
+   * @var PathValidator
    */
   protected $pathValidator;
 
@@ -62,7 +59,6 @@ class SamlService extends OriginalSamlService {
 
   /**
    * Constructor for Drupal\hy_samlauth\SamlService.
-   *
    * @param \Drupal\externalauth\ExternalAuth $external_auth
    *   The ExternalAuth service.
    * @param \Drupal\Core\Config\ConfigFactoryInterface $config_factory
@@ -88,29 +84,26 @@ class SamlService extends OriginalSamlService {
   }
 
   /**
-   * @param \Symfony\Component\HttpFoundation\Session\Session $session
+   * @param Session $session
    */
   public function setSession(Session $session) {
     $this->session = $session;
   }
 
   /**
-   * @param \Symfony\Component\HttpFoundation\RequestStack $requestStack
+   * @param RequestStack $requestStack
    */
   public function setRequestStack(RequestStack $requestStack) {
     $this->requestStack = $requestStack;
   }
 
   /**
-   * @param \Drupal\Core\Path\PathValidator $pathValidator
+   * @param PathValidator $pathValidator
    */
   public function setPathValidator(PathValidator $pathValidator) {
     $this->pathValidator = $pathValidator;
   }
 
-  /**
-   *
-   */
   public function synchronizeUserAttributes(UserInterface $account, $skip_save = FALSE) {
     // Skip user authentication.
   }
@@ -119,15 +112,15 @@ class SamlService extends OriginalSamlService {
    * Set login and logout destinations in user´s session.
    */
   public function setPostLoginLogoutDestination() {
-    // Ensure that session is started.
+    // Ensure that session is started
     if (!$this->session->isStarted()) {
       $this->session->start();
     }
 
-    // We default at least to our frontpage.
+    // We default at least to our frontpage
     $url = new Url('<front>');
 
-    // If we can catch the referrer, use that.
+    // If we can catch the referrer, use that
     $referer = $this->requestStack->getCurrentRequest()->server->get('HTTP_REFERER');
     if ($referer) {
       if ($valid_url = $this->pathValidator->getUrlIfValid($referer)) {
@@ -152,7 +145,7 @@ class SamlService extends OriginalSamlService {
   /**
    * Get login and logout destinations in user´s session.
    *
-   * @return \Drupal\Core\Url|null
+   * @return Url|null
    */
   public function getPostLoginLogoutDestination() {
     if (!empty($this->session->get(self::SESS_VALUE_KEY))) {
@@ -208,13 +201,13 @@ class SamlService extends OriginalSamlService {
   /**
    * {@inheritdoc}
    */
-  public function logout($return_to = NULL) {
+  public function logout($return_to = null) {
     if (!$return_to) {
       $sp_config = $this->samlAuth->getSettings()->getSPData();
       $return_to = $sp_config['singleLogoutService']['url'];
     }
 
-    // Get logout return URL.
+    // Get logout return URL
     $parameters = ['referrer' => $return_to];
     if ($return_url = $this->getPostLogoutDestination()) {
       $parameters['return'] = $return_url->setAbsolute(TRUE)->toString(TRUE)->getGeneratedUrl();

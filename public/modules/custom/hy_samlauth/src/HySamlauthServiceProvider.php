@@ -10,7 +10,6 @@ use Symfony\Component\DependencyInjection\Reference;
  * Modify the SamlAuth service with an overridden/extended service.
  */
 class HySamlauthServiceProvider extends ServiceProviderBase {
-
   /**
    * {@inheritdoc}
    */
@@ -21,5 +20,4 @@ class HySamlauthServiceProvider extends ServiceProviderBase {
     $definition->addArgument(new Reference('session'));
     $definition->addArgument(new Reference('path.validator'));
   }
-
 }

@@ -58,7 +58,6 @@ class HySamlauthUserSyncEvent extends Event {
    *   Session attribute name.
    * @param $value
    *   Session attribute value.
-   *
    * @return
    */
   public function setAttribute($name, $value) {
@@ -70,11 +69,9 @@ class HySamlauthUserSyncEvent extends Event {
    *
    * @param $name
    *   Session attribute name.
-   *
    * @return
    */
   public function getAttribute($name) {
     return $this->session->get($name);
   }
-
 }

@@ -6,13 +6,15 @@ use Drupal\Core\Routing\TrustedRedirectResponse;
 use Drupal\samlauth\Controller\SamlController as OriginalSamlController;
 use Drupal\hy_samlauth\SamlService;
 use Drupal\Core\Path\PathValidator;
+use Drupal\hy_samlauth\EventSubscriber\RedirectAnonymousSubscriber;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\RequestStack;
+use Drupal\user\PrivateTempStoreFactory;
+use Drupal\Core\Session\AccountInterface;
+use Drupal\Core\Session\SessionManagerInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
-/**
- *
- */
+
 class SamlController extends OriginalSamlController {
 
   protected $tempStoreFactory;
@@ -20,7 +22,7 @@ class SamlController extends OriginalSamlController {
   protected $requestStack;
 
   /**
-   * @var \Drupal\Core\Path\PathValidator
+   * @var PathValidator
    */
   protected $pathValidator;
 
@@ -35,7 +37,7 @@ class SamlController extends OriginalSamlController {
   }
 
   /**
-   * @param \Drupal\Core\Path\PathValidator $pathValidator
+   * @param PathValidator $pathValidator
    */
   public function setPathValidator(PathValidator $pathValidator) {
     $this->pathValidator = $pathValidator;
@@ -112,5 +114,4 @@ class SamlController extends OriginalSamlController {
     $this->saml->removePostLoginLogoutDestination();
     return $response;
   }
-
 }
