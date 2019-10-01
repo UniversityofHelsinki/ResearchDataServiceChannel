@@ -58,15 +58,23 @@
             group: root
             owner: root
 
-        - name: "Set symlinks"
+        - name: Set symlinks
           file:
             src: "{{ item.src }}"
             dest: "{{ item.dest }}"
             state: link
           with_items:
             - { src: "{{ projects.default.root }}/releases/{{ timestamp }}", dest: "{{ projects.default.current }}" }
-            - { src: "{{ projects.default.root }}/shared/settings.local.php", dest: "{{ projects.default.public_root }}/sites/default/settings.local.php" }
             - { src: "{{ projects.default.root }}/shared/files", dest: "{{ projects.default.public_root }}/sites/default/files" }
+
+        - name: Copy settings.local.php and saml.local.php
+          copy:
+            src: "{{ item.src }}"
+            dest: "{{ item.dest }}"
+            remote_src: yes
+          with_items:
+            - { src: "{{ projects.default.root }}/shared/settings.local.php", dest: "{{ projects.default.public_root }}/sites/default/settings.local.php" }
+            - { src: "{{ projects.default.root }}/shared/saml.local.php", dest: "{{ projects.default.public_root }}/sites/default/saml.local.php" }
 
       become: yes
 
