@@ -764,7 +764,7 @@ display:
             value: "<h2>Service catalogue</h2>\n<p>Here you can browse & search all the services we provide. You can narrow down the selection with the filters below.</p>"
             format: full_html
           plugin_id: text
-      use_ajax: false
+      use_ajax: true
       menu:
         type: normal
         title: 'Service catalogue'
