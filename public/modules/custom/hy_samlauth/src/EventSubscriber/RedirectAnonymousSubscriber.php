@@ -40,6 +40,7 @@ class RedirectAnonymousSubscriber implements EventSubscriberInterface {
     }
 
     // Check if user has logged in already.
+    /** @var \Drupal\Core\TempStore\PrivateTempStore $tempstore */
     $tempstore = Drupal::service('user.private_tempstore')->get('hy_samlauth');
     $user = $tempstore->get(SamlService::SESSION_SAML_USER);
     if (empty($user)) {

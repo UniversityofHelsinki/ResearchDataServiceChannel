@@ -41,7 +41,7 @@ class SamlService extends OriginalSamlService {
   protected $pathValidator;
 
   /**
-   * @var \Drupal\user\PrivateTempStoreFactory
+   * @var \Drupal\Core\TempStore\PrivateTempStoreFactory
    */
   protected $tempStoreFactory;
 
@@ -56,7 +56,7 @@ class SamlService extends OriginalSamlService {
   private $currentUser;
 
   /**
-   * @var \Drupal\user\PrivateTempStore
+   * @var \Drupal\Core\TempStore\PrivateTempStore
    */
   protected $store;
 
