@@ -29,3 +29,7 @@ $settings['trusted_host_patterns'] = [
 
 // ESB API endpoint settings
 $config['esb']['url'] = 'https://esbpub1.it.helsinki.fi/mildred/createticket';
+
+// For some reason this helped to get to login.helsinki.fi (but not yet back)
+$settings['reverse_proxy'] = TRUE;
+$settings['reverse_proxy_addresses'] = ['127.0.0.1'];
