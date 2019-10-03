@@ -46,16 +46,6 @@ class SamlService extends OriginalSamlService {
   protected $tempStoreFactory;
 
   /**
-   * @var \Drupal\Core\Session\SessionManagerInterface
-   */
-  private $sessionManager;
-
-  /**
-   * @var \Drupal\Core\Session\AccountInterface
-   */
-  private $currentUser;
-
-  /**
    * @var \Drupal\Core\TempStore\PrivateTempStore
    */
   protected $store;
@@ -197,8 +187,14 @@ class SamlService extends OriginalSamlService {
     // Get samlAuth response.
     $this->getSamlAuth()->processResponse();
 
+    $attributes = $this->getAttributes();
+
+    if (empty($attributes)) {
+      throw new \OneLogin_Saml2_Error('No user attributes given.', \OneLogin_Saml2_Error::SAML_RESPONSE_NOT_FOUND);
+    }
+
     // Set samlauth attributes to user.temp session via eventDispatcher.
-    $event = new HySamlauthUserSyncEvent($this->getAttributes());
+    $event = new HySamlauthUserSyncEvent($attributes);
     $this->eventDispatcher->dispatch(HySamlauthUserSyncEvent::USER_COOKIE, $event);
     $event->setAttribute(self::SESSION_SAML_NAME, $this->getAttributeByConfig('user_name_attribute'));
     $event->setAttribute(self::SESSION_SAML_EMAIL, $this->getAttributeByConfig('user_mail_attribute'));

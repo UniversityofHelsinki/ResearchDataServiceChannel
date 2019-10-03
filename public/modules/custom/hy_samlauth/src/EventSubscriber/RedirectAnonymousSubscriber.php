@@ -35,7 +35,7 @@ class RedirectAnonymousSubscriber implements EventSubscriberInterface {
   public function checkAuthStatus(GetResponseEvent $event) {
     // Is current path correct path?
     $current_path = Url::fromRoute('<current>', [], ['absolute' => FALSE]);
-    if (strpos($current_path, '/service-order-form') !== 0) {
+    if (strpos($current_path->toString(), '/service-order-form') !== 0) {
       return;
     }
 
