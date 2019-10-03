@@ -22,11 +22,13 @@
       args:
         chdir: "{{ deploy_folder }}"
 
-    - name: "Copy settings.env.php for {{ project_env }} environment"
-      local_action: "command cp ../conf/{{ project_env }}.settings.php {{ deploy_folder }}/public/sites/default/settings.env.php"
-
-    - name: "Copy services.env.yml for {{ project_env }} environment"
-      local_action: "command cp ../conf/{{ project_env }}.services.yml {{ deploy_folder }}/public/sites/default/services.env.yml"
+    - name: "Copy environment ({{ project_env }}) specific setting files"
+      local_action: "command cp {{ item.src }} {{ item.dest }}"
+      with_items:
+        - { src: "conf/{{ project_env }}.settings.php", dest: "public/sites/default/settings.env.php" }
+        - { src: "conf/{{ project_env }}.services.yml", dest: "public/sites/default/services.env.yml" }
+      args:
+        chdir: "{{ deploy_folder }}"
 
     - name: "Create release artifact for {{ project_env }} environment"
       local_action: "command tar -hczf artifact.tar.gz --files-from=conf/artifact/include --exclude-from=conf/artifact/exclude"
