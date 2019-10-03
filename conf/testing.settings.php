@@ -29,3 +29,13 @@ $settings['trusted_host_patterns'] = [
 
 // ESB API endpoint settings
 $config['esb']['url'] = 'https://esbpub2.it.helsinki.fi/devel/mildred/createticket';
+
+// For some reason this helped to get to login.helsinki.fi (but not yet back)
+$settings['reverse_proxy'] = TRUE;
+$settings['reverse_proxy_addresses'] = ['127.0.0.1'];
+
+// Make $_SERVER variables correct for Shibboleth authentication.
+if (getenv('HTTPS') !== 'on' && getenv('HTTP_X_FORWARDED_PROTO') === 'https') {
+  $_SERVER['HTTPS'] = 'on';
+  $_SERVER["SERVER_PORT"] = 443;
+}
