@@ -3,30 +3,41 @@ version: '3.7'
 services:
 
   drupal:
-    hostname: &hostname "${DRUPAL_HOSTNAME}"
+    hostname: "${DRUPAL_HOSTNAME}"
     container_name: "${COMPOSE_PROJECT_NAME}-drupal"
     image: "${DRUPAL_IMAGE}"
     environment:
-      # If you want to use stage_file_proxy, uncomment following line and add the production url of your website:
-      AMAZEEIO_PRODUCTION_URL: 'https://datasupport.helsinki.fi/'
-      # APC Support is by default enabled, but in some cases it can make issues, change to 0 to disable:
-      APC: 1
-      VIRTUAL_HOST: *hostname
-      WEBROOT: "${DRUPAL_WEBROOT}"
       DRUSH_OPTIONS_URI: "https://${DRUPAL_HOSTNAME}" # Site URI for Drush 9
     volumes:
-      - .:/var/www/drupal/public_html:delegated
+      - .:/app:delegated
       - ssh:/tmp/amazeeio_ssh-agent:ro
-    ports:
-      - "3306"
     networks:
+      - internal
       - dev-network
     labels:
       traefik.enable: true
+      traefik.port: 8080
       traefik.frontend.rule: "Host:${DRUPAL_HOSTNAME}"
       traefik.frontend.redirect.entryPoint: https
 
+  mariadb:
+    container_name: "${COMPOSE_PROJECT_NAME}-db"
+    image: mysql:5.7
+    #volumes:
+    #  - dbdata:/var/lib/mysql
+    environment:
+      MYSQL_DATABASE: drupal
+      MYSQL_USER: drupal
+      MYSQL_PASSWORD: drupal
+      MYSQL_ROOT_PASSWORD: drupal
+    ports:
+      - 3306
+    networks:
+      - internal
+
 networks:
+  internal:
+    external: false
   dev-network:
     name: stonehenge-network
     external: true

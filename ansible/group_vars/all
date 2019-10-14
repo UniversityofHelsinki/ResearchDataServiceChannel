@@ -68,9 +68,9 @@ nginx_configs:
 #
 
 # Version
-php_version: "7.1"
+#php_version: "7.1"
 #php_version: "7.2"
-#php_version: "7.3"
+php_version: "7.3"
 
 # Misc
 php_install_recommends: no

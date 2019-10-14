@@ -1,5 +1,5 @@
 ANSIBLE_ROLES_PATH := ansible/roles
-WARNING_USERNAME := USERNAME is required, e.g. make target USER=johnsmith
+WARNING_USERNAME := USERNAME is required, e.g. make target USERNAME=johnsmith
 
 PHONY += deploy
 deploy: ENV := testing
