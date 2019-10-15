@@ -1,8 +1,3 @@
-CLI_SERVICE := drupal
-CLI_SHELL := bash
-CLI_USER := drupal
-DOCKER_PROJECT_ROOT := /app
-
 SYNC_TARGETS := drush-sync-prompt-for-username
 
 ifeq ($(ENV),production)
