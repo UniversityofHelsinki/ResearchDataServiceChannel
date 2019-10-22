@@ -66,6 +66,14 @@ if (getenv('WODBY_INSTANCE_TYPE')) {
 }
 
 /**
+ * Some servers don't allow setting HOSTNAME globally, use then DRUPAL_HOSTNAME.
+ */
+
+if (getenv('DRUPAL_HOSTNAME')) {
+  putenv('HOSTNAME='. getenv('DRUPAL_HOSTNAME'));
+}
+
+/**
  * ENV. By default it's least open, so prod.
  */
 

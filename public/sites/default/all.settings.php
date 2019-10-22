@@ -37,5 +37,5 @@ $config['cdn.settings'] = [
   'status' => FALSE,
 ];
 
-// Disabling stage file proxy by default.
-$config['stage_file_proxy.settings']['origin'] = FALSE;
+// Stage file proxy URL from production URL.
+$config['stage_file_proxy.settings']['origin'] = getenv('DRUPAL_PRODUCTION_URL');
