@@ -28,6 +28,17 @@
 
   post_tasks:
 
+    - name: Configuring environment
+      lineinfile:
+        dest: "/etc/environment"
+        regexp: '^{{ item.key }}\ ?='
+        line: "{{ item.key }}='{{ item.value }}'"
+      with_dict:
+        APP_ENV: "{{ project_env }}"
+        DRUSH_OPTIONS_URI: "https://{{ hostname }}"
+        DRUPAL_HOSTNAME: "{{ hostname }}"
+      tags: [ env ]
+
     - name: Ensure shared directory exists
       file:
         path: "{{ projects.default.root }}/shared"

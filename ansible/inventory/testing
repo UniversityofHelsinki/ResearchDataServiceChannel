@@ -7,4 +7,4 @@ app-server-1
 app_servers
 
 [testing:vars]
-project_env=testing
+project_env=test

@@ -18,11 +18,6 @@ $config['stage_file_proxy.settings']['origin'] = FALSE;
 // Environment indication.
 $config['environment']['env'] = 'production';
 
-// Trusted Host Patterns
-$settings['trusted_host_patterns'] = [
-  '^datasupport\.helsinki\.fi',
-];
-
 // ESB API endpoint settings
 $config['esb']['url'] = 'https://esbpub1.it.helsinki.fi/mildred/createticket';
 

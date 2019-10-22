@@ -1,9 +1,5 @@
 <?php
 
-/**
- * Settings for testing environment.
- */
-
 // Show all error messages on the site
 $config['system.logging']['error_level'] = 'all';
 
@@ -21,11 +17,6 @@ $config['stage_file_proxy.settings']['origin'] = false;
 
 // Environment indication.
 $config['environment']['env'] = 'testing';
-
-// Trusted Host Patterns
-$settings['trusted_host_patterns'] = [
-  '^datasupport-test\.it\.helsinki\.fi$',
-];
 
 // ESB API endpoint settings
 $config['esb']['url'] = 'https://esbpub2.it.helsinki.fi/devel/mildred/createticket';
