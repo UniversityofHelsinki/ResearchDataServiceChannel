@@ -3,8 +3,9 @@
 # PROJECT
 #
 
+hostname: datasupport.helsinki.fi
 secrets: /root/ansible
-project_env: production
+project_env: prod
 git_branch: master
 
 projects_root: /data
@@ -15,7 +16,7 @@ projects:
     current: "{{ projects_root }}/rds/current"
     public_root: "{{ projects_root }}/rds/current/public"
     hosts:
-      - datasupport.helsinki.fi
+      - "{{ hostname }}"
     key: "/etc/pki/tls/private/datasupport.helsinki.fi.key"
     crt: "/etc/pki/tls/certs/datasupport.helsinki.fi.crt"
 

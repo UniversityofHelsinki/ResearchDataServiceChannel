@@ -7,4 +7,4 @@ app-server-1
 app_servers
 
 [production:vars]
-project_env=production
+project_env=prod
