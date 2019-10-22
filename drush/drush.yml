@@ -15,6 +15,3 @@ sql:
       - 'sessions'
       - 'watchdog'
       - 'feeds_log'
-
-ssh:
-  options: '-o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no'
