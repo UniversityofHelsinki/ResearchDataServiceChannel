@@ -1,8 +1,7 @@
 ---
 - hosts: all
-  gather_facts: false
   vars:
-    deploy_folder: "../deploy"
+    deploy_folder: "deploy"
     repo: "git@github.com:UniversityofHelsinki/ResearchDataServiceChannel.git"
     backups_path: "{{ projects.default.root }}/backups"
 
@@ -12,28 +11,18 @@
       local_action:
         module: git
         repo: "{{ repo }}"
-        dest: "{{ deploy_folder }}"
+        dest: "../{{ deploy_folder }}"
         version: "{{ git_branch }}"
         force: yes
         depth: 1
 
     - name: "Build code for {{ project_env }} environment"
-      local_action: "command composer install --no-dev --ignore-platform-reqs"
-      args:
-        chdir: "{{ deploy_folder }}"
-
-    - name: "Copy environment ({{ project_env }}) specific setting files"
-      local_action: "command cp {{ item.src }} {{ item.dest }}"
-      with_items:
-        - { src: "conf/{{ project_env }}.settings.php", dest: "public/sites/default/settings.env.php" }
-        - { src: "conf/{{ project_env }}.services.yml", dest: "public/sites/default/services.env.yml" }
-      args:
-        chdir: "{{ deploy_folder }}"
+      local_action: "command docker run --rm -v {{ lookup('env', 'PWD') }}/{{ deploy_folder }}:/app --user=druid druidfi/drupal:7.3 composer install --no-dev --ignore-platform-reqs"
 
     - name: "Create release artifact for {{ project_env }} environment"
       local_action: "command tar -hczf artifact.tar.gz --files-from=conf/artifact/include --exclude-from=conf/artifact/exclude"
       args:
-        chdir: "{{ deploy_folder }}"
+        chdir: "../{{ deploy_folder }}"
 
     - name: Gather facts about remote
       setup:
@@ -55,7 +44,7 @@
 
         - name: "Extract artifact into {{ projects.default.root }}/releases/{{ timestamp }}"
           unarchive:
-            src: "{{ deploy_folder }}/artifact.tar.gz"
+            src: "../{{ deploy_folder }}/artifact.tar.gz"
             dest: "{{ projects.default.root }}/releases/{{ timestamp }}"
             group: root
             owner: root
@@ -69,13 +58,13 @@
             - { src: "{{ projects.default.root }}/releases/{{ timestamp }}", dest: "{{ projects.default.current }}" }
             - { src: "{{ projects.default.root }}/shared/files", dest: "{{ projects.default.public_root }}/sites/default/files" }
 
-        - name: Copy settings.local.php and saml.local.php
+        - name: Copy local.settings.php and saml.local.php
           copy:
             src: "{{ item.src }}"
             dest: "{{ item.dest }}"
             remote_src: yes
           with_items:
-            - { src: "{{ projects.default.root }}/shared/settings.local.php", dest: "{{ projects.default.public_root }}/sites/default/settings.local.php" }
+            - { src: "{{ projects.default.root }}/shared/settings.local.php", dest: "{{ projects.default.public_root }}/sites/default/local.settings.php" }
             - { src: "{{ projects.default.root }}/shared/saml.local.php", dest: "{{ projects.default.public_root }}/sites/default/saml.local.php" }
 
       become: yes
