@@ -10,12 +10,13 @@ services:
       - .:/app:delegated
       - ssh:/tmp/amazeeio_ssh-agent:ro
     environment:
-      DRUSH_OPTIONS_URI: "https://${DRUPAL_HOSTNAME}" # Site URI for Drush 9
+      APP_ENV: "${APP_ENV}"
       DRUPAL_DB_NAME: drupal
       DRUPAL_DB_USER: drupal
       DRUPAL_DB_PASS: drupal
       DRUPAL_DB_HOST: db
       DRUPAL_DB_PORT: 3306
+      DRUSH_OPTIONS_URI: "https://${DRUPAL_HOSTNAME}" # Site URI for Drush 9
     networks:
       - internal
       - dev-network
