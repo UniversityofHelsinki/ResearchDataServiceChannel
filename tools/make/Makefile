@@ -2,9 +2,6 @@
 
 BUILD_TARGETS :=
 CLEAN_FOLDERS := node_modules
-CLI_SERVICE := cli
-CLI_SHELL := sh
-CLI_USER := root
 COMPOSER_BIN := $(shell which composer || echo no)
 COMPOSER_JSON_EXISTS := $(shell test -f composer.json && echo yes || echo no)
 DOCKER_COMPOSE_BIN := $(shell which docker-compose || echo no)
@@ -17,7 +14,7 @@ TEST_TARGETS := test-foobar
 UNAME_S := $(shell uname -s)
 # Shorten with https://git.io/ : https://raw.githubusercontent.com/druidfi/tools/master/update.sh
 UPDATE_SCRIPT_URL := https://git.io/fh771
-WEBROOT := public
+WEBROOT ?= public
 
 # Detect additional tooling
 AMAZEEIO_LEGACY := $(shell test -f .amazeeio.yml && echo yes || echo no)

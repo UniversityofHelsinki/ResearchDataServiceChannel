@@ -1,11 +1,7 @@
 <?php
 
-/**
- * Settings for production environment.
- */
-
-// Don't show any error messages on the site (will still be shown in watchdog)
-$config['system.logging']['error_level'] = 'hide';
+// Show all error messages on the site
+$config['system.logging']['error_level'] = 'all';
 
 // Expiration of cached pages on Varnish to 15 min
 $config['system.performance']['cache']['page']['max_age'] = 900;
@@ -20,15 +16,10 @@ $config['system.performance']['js']['preprocess'] = 1;
 $config['stage_file_proxy.settings']['origin'] = false;
 
 // Environment indication.
-$config['environment']['env'] = 'production';
-
-// Trusted Host Patterns
-$settings['trusted_host_patterns'] = [
-  '^datasupport\.helsinki\.fi',
-];
+$config['environment']['env'] = 'testing';
 
 // ESB API endpoint settings
-$config['esb']['url'] = 'https://esbpub1.it.helsinki.fi/mildred/createticket';
+$config['esb']['url'] = 'https://esbpub2.it.helsinki.fi/devel/mildred/createticket';
 
 // For some reason this helped to get to login.helsinki.fi (but not yet back)
 $settings['reverse_proxy'] = TRUE;

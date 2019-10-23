@@ -28,6 +28,28 @@
 
   post_tasks:
 
+    - name: Configuring environment
+      lineinfile:
+        dest: "/etc/environment"
+        regexp: '^{{ item.key }}\ ?='
+        line: "{{ item.key }}='{{ item.value }}'"
+      with_dict:
+        APP_ENV: "{{ project_env }}"
+        DRUSH_OPTIONS_URI: "https://{{ hostname }}"
+        DRUPAL_HOSTNAME: "{{ hostname }}"
+      tags: [ 'php' ]
+
+    - name:  Set clear_env = no for PHP-FPM and set ENV vars
+      lineinfile:
+        dest: "{{ __php_fpm_pool_conf_path }}"
+        line: "{{ item }}"
+      with_items:
+        - "clear_env = no"
+        - "env[APP_ENV] = {{ project_env }}"
+        - "env[DRUSH_OPTIONS_URI] = https://{{ hostname }}"
+        - "env[HOSTNAME] = {{ hostname }}"
+      tags: [ 'php' ]
+
     - name: Ensure shared directory exists
       file:
         path: "{{ projects.default.root }}/shared"

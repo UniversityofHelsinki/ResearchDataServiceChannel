@@ -53,6 +53,12 @@
         "patches": {
             "drupal/samlauth": {
                 "https://www.drupal.org/i/2860473": "https://www.drupal.org/files/issues/2860473-11.patch"
+            },
+            "drush/drush": {
+                "": "https://patch-diff.githubusercontent.com/raw/drush-ops/drush/pull/4223.patch"
+            },
+            "onelogin/php-saml": {
+                "deprecations": "https://patch-diff.githubusercontent.com/raw/onelogin/php-saml/pull/333.patch"
             }
         }
     },
@@ -64,7 +70,8 @@
     ],
     "config": {
         "platform": {
-            "php": "7.1.32"
+            "php": "7.3.10",
+            "ext-mcrypt": "1.0.0"
         },
         "sort-packages": true
     },
