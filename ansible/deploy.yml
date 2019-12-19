@@ -64,7 +64,7 @@
             dest: "{{ item.dest }}"
             remote_src: yes
           with_items:
-            - { src: "{{ projects.default.root }}/shared/settings.local.php", dest: "{{ projects.default.public_root }}/sites/default/local.settings.php" }
+            - { src: "{{ projects.default.root }}/shared/local.settings.php", dest: "{{ projects.default.public_root }}/sites/default/local.settings.php" }
             - { src: "{{ projects.default.root }}/shared/saml.local.php", dest: "{{ projects.default.public_root }}/sites/default/saml.local.php" }
 
       become: yes

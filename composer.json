@@ -16,28 +16,28 @@
         "composer/installers": "^1.2",
         "cweagans/composer-patches": "^1.6.5",
         "drupal-composer/drupal-scaffold": "^2.5",
+        "drupal/admin_toolbar": "^2.0",
         "drupal/adminimal_admin_toolbar": "^1.9",
         "drupal/adminimal_theme": "^1.3",
         "drupal/better_exposed_filters": "^3.0@alpha",
-        "drupal/core": "^8.7.7",
+        "drupal/core": "8.7.11",
         "drupal/ds": "^3.4",
         "drupal/externalauth": "^1.2",
         "drupal/fico": "1.0",
         "drupal/google_analytics": "2.4",
         "drupal/libraries": "3.x-dev",
-        "drupal/pathauto": "^1.4",
+        "drupal/pathauto": "^1.6",
         "drupal/restui": "^1.17",
         "drupal/samlauth": "^2.0@alpha",
         "drupal/stage_file_proxy": "^1.0",
         "drupal/system_status": "^2.8",
         "drupal/token": "^1.5",
         "drupal/webform": "5.0",
-        "drush/drush": "^9",
+        "drush/drush": "^10.1",
         "zaporylie/composer-drupal-optimizations": "^1.0"
     },
     "require-dev": {
-        "dealerdirect/phpcodesniffer-composer-installer": "^0.5.0",
-        "webflo/drupal-core-require-dev": "^8.7.0"
+        "dealerdirect/phpcodesniffer-composer-installer": "^0.5.0"
     },
     "extra": {
         "installer-paths": {
@@ -53,9 +53,6 @@
         "patches": {
             "drupal/samlauth": {
                 "https://www.drupal.org/i/2860473": "https://www.drupal.org/files/issues/2860473-11.patch"
-            },
-            "drush/drush": {
-                "": "https://patch-diff.githubusercontent.com/raw/drush-ops/drush/pull/4223.patch"
             },
             "onelogin/php-saml": {
                 "deprecations": "https://patch-diff.githubusercontent.com/raw/onelogin/php-saml/pull/333.patch"
