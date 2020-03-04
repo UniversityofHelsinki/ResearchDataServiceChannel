@@ -30,7 +30,7 @@ $settings['file_public_path'] = 'sites/default/files/public';
 $settings['file_private_path'] = FALSE;
 
 // Temp directory
-$config['system.file']['path']['temporary'] = '/tmp';
+$settings['file_temp_path'] = '/tmp';
 
 // Disable CND by default
 $config['cdn.settings'] = [
