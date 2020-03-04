@@ -22,3 +22,8 @@ drush-sync-prompt-for-username:
 	@docker-compose exec --env PROJECT_SSH_USER=$(shell bash -c 'read -p "$(PROMPT) " u; echo $$u') \
 		-u ${CLI_USER} ${CLI_SERVICE} ${CLI_SHELL} \
 		-c "drush --ansi --strict=0 sql-sync -y @$(DRUPAL_SYNC_SOURCE) @self"
+
+PHONY += shell-test
+shell-test: HOST := datasupport-test.it.helsinki.fi
+shell-test: ## Login to test server
+	@ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no $(shell bash -c 'read -p "$(PROMPT) " u; echo $$u')@$(HOST)
