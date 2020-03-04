@@ -67,14 +67,23 @@
             - { src: "{{ projects.default.root }}/shared/local.settings.php", dest: "{{ projects.default.public_root }}/sites/default/local.settings.php" }
             - { src: "{{ projects.default.root }}/shared/saml.local.php", dest: "{{ projects.default.public_root }}/sites/default/saml.local.php" }
 
-      become: yes
+        - name: Set permissions on files folder
+          file:
+            path: "{{ projects.default.root }}/shared/files"
+            state: directory
+            recurse: yes
+            owner: nginx
+            group: nginx
+            mode: '0775'
 
-    - name: Run drush commands
-      shell: drush -y -r {{ projects.default.public_root }} {{ item }}
-      with_items:
-        - "updb -y" # Performs database updates.
-        - "cim -y"  # Imports configuration changes.
-        - "cr"      # Clears caches.
+        - name: Run drush commands
+          shell: drush -y -r {{ projects.default.public_root }} {{ item }} || true
+          with_items:
+            - "updb -y" # Performs database updates.
+            - "cim -y"  # Imports configuration changes.
+            - "cr"      # Clears caches.
+
+      become: yes
 
     - name: Cleanup (keep 10 latest releases)
       shell: ls -dt releases/*/ | tail -n +11 | xargs rm -rf
