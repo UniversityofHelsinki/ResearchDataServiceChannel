@@ -33,11 +33,10 @@
         "drupal/system_status": "^2.8",
         "drupal/token": "^1.5",
         "drupal/webform": "5.0",
-        "drush/drush": "^10.1",
+        "drush/drush": "^10.2",
         "zaporylie/composer-drupal-optimizations": "^1.0"
     },
     "require-dev": {
-        "dealerdirect/phpcodesniffer-composer-installer": "^0.5.0"
     },
     "extra": {
         "installer-paths": {
@@ -75,16 +74,6 @@
     "scripts": {
         "drupal-scaffold": [
             "DrupalComposer\\DrupalScaffold\\Plugin::scaffold"
-        ],
-        "fix": [
-            "phpcbf --colors --standard=Drupal --extensions=php,theme,module --ignore='*.css,*.md,node_modules' ./public/modules/custom ./public/themes/custom"
-        ],
-        "lint": [
-            "phpcs --colors --standard=Drupal --extensions=php,theme,module --ignore='*.css,*.md,node_modules' ./public/modules/custom ./public/themes/custom"
-        ],
-        "test": [
-            "phpunit -c phpunit.xml.dist --testsuite unit"
-        ],
-        "test-unit": "@test"
+        ]
     }
 }
