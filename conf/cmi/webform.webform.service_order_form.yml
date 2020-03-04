@@ -6,8 +6,10 @@ dependencies:
     - hy_esb
 open: null
 close: null
+weight: 0
 uid: 1
 template: false
+archive: false
 id: service_order_form
 title: 'Service order form'
 description: ''
