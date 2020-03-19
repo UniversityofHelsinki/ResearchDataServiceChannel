@@ -2158,16 +2158,16 @@
         },
         {
             "name": "drupal/core",
-            "version": "8.8.2",
+            "version": "8.8.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/drupal/core.git",
-                "reference": "f997857003276c2ae6d27db30f0eab9c7dd10e62"
+                "reference": "34e59fcf702c1b3c497bbd6e92e68e546c5d15b8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/drupal/core/zipball/f997857003276c2ae6d27db30f0eab9c7dd10e62",
-                "reference": "f997857003276c2ae6d27db30f0eab9c7dd10e62",
+                "url": "https://api.github.com/repos/drupal/core/zipball/34e59fcf702c1b3c497bbd6e92e68e546c5d15b8",
+                "reference": "34e59fcf702c1b3c497bbd6e92e68e546c5d15b8",
                 "shasum": ""
             },
             "require": {
@@ -2384,7 +2384,7 @@
                 "GPL-2.0-or-later"
             ],
             "description": "Drupal is an open source content management platform powering millions of websites and applications.",
-            "time": "2020-02-01T19:51:15+00:00"
+            "time": "2020-03-18T16:26:33+00:00"
         },
         {
             "name": "drupal/ctools",
@@ -2507,7 +2507,7 @@
                 },
                 "drupal": {
                     "version": "8.x-3.4",
-                    "datestamp": "1567165687",
+                    "datestamp": "1574750285",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -2576,7 +2576,7 @@
                 },
                 "drupal": {
                     "version": "8.x-1.2",
-                    "datestamp": "1569251888",
+                    "datestamp": "1569916976",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -4103,11 +4103,6 @@
                 "ext-gettext": "Install gettext and php5-gettext libs to handle translations"
             },
             "type": "library",
-            "extra": {
-                "patches_applied": {
-                    "deprecations": "https://patch-diff.githubusercontent.com/raw/onelogin/php-saml/pull/333.patch"
-                }
-            },
             "autoload": {
                 "classmap": [
                     "extlib/xmlseclibs",
@@ -4126,7 +4121,12 @@
                 "onelogin",
                 "saml"
             ],
-            "time": "2019-09-11T13:55:25+00:00"
+            "time": "2019-09-11T13:55:25+00:00",
+            "extra": {
+                "patches_applied": {
+                    "deprecations": "https://patch-diff.githubusercontent.com/raw/onelogin/php-saml/pull/333.patch"
+                }
+            }
         },
         {
             "name": "paragonie/random_compat",
@@ -5670,16 +5670,16 @@
         },
         {
             "name": "symfony/polyfill-php72",
-            "version": "v1.13.1",
+            "version": "v1.14.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-php72.git",
-                "reference": "66fea50f6cb37a35eea048d75a7d99a45b586038"
+                "reference": "46ecacf4751dd0dc81e4f6bf01dbf9da1dc1dadf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/polyfill-php72/zipball/66fea50f6cb37a35eea048d75a7d99a45b586038",
-                "reference": "66fea50f6cb37a35eea048d75a7d99a45b586038",
+                "url": "https://api.github.com/repos/symfony/polyfill-php72/zipball/46ecacf4751dd0dc81e4f6bf01dbf9da1dc1dadf",
+                "reference": "46ecacf4751dd0dc81e4f6bf01dbf9da1dc1dadf",
                 "shasum": ""
             },
             "require": {
@@ -5688,7 +5688,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.13-dev"
+                    "dev-master": "1.14-dev"
                 }
             },
             "autoload": {
@@ -5721,7 +5721,7 @@
                 "portable",
                 "shim"
             ],
-            "time": "2019-11-27T13:56:44+00:00"
+            "time": "2020-01-13T11:15:53+00:00"
         },
         {
             "name": "symfony/polyfill-util",
