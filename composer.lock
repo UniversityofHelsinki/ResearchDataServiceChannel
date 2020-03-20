@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "8680d67f5f9003757a86284276483a50",
+    "content-hash": "eba28905dbb5b584166509bfbb9bb9fc",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -2295,17 +2295,17 @@
         },
         {
             "name": "drupal/ds",
-            "version": "3.4.0",
+            "version": "3.5.0",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/ds.git",
-                "reference": "8.x-3.4"
+                "reference": "8.x-3.5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/ds-8.x-3.4.zip",
-                "reference": "8.x-3.4",
-                "shasum": "ebf070ba2f7cf78a62cf74678a9948546a93e773"
+                "url": "https://ftp.drupal.org/files/projects/ds-8.x-3.5.zip",
+                "reference": "8.x-3.5",
+                "shasum": "089c475534e64829d87fe3b34eca5f25654ea7bf"
             },
             "require": {
                 "drupal/core": "^8.6"
@@ -2320,7 +2320,7 @@
                     "dev-3.x": "3.x-dev"
                 },
                 "drupal": {
-                    "version": "8.x-3.4",
+                    "version": "8.x-3.5",
                     "datestamp": "1574750285",
                     "security-coverage": {
                         "status": "covered",
@@ -3913,11 +3913,6 @@
                 "ext-gettext": "Install gettext and php5-gettext libs to handle translations"
             },
             "type": "library",
-            "extra": {
-                "patches_applied": {
-                    "deprecations": "https://patch-diff.githubusercontent.com/raw/onelogin/php-saml/pull/333.patch"
-                }
-            },
             "autoload": {
                 "classmap": [
                     "extlib/xmlseclibs",
@@ -3936,7 +3931,12 @@
                 "onelogin",
                 "saml"
             ],
-            "time": "2019-09-11T13:55:25+00:00"
+            "time": "2019-09-11T13:55:25+00:00",
+            "extra": {
+                "patches_applied": {
+                    "deprecations": "https://patch-diff.githubusercontent.com/raw/onelogin/php-saml/pull/333.patch"
+                }
+            }
         },
         {
             "name": "paragonie/random_compat",
@@ -4977,20 +4977,6 @@
             ],
             "description": "Symfony Finder Component",
             "homepage": "https://symfony.com",
-            "funding": [
-                {
-                    "url": "https://symfony.com/sponsor",
-                    "type": "custom"
-                },
-                {
-                    "url": "https://github.com/fabpot",
-                    "type": "github"
-                },
-                {
-                    "url": "https://tidelift.com/funding/github/packagist/symfony/symfony",
-                    "type": "tidelift"
-                }
-            ],
             "time": "2020-02-14T07:42:58+00:00"
         },
         {
@@ -6032,20 +6018,6 @@
                 "debug",
                 "dump"
             ],
-            "funding": [
-                {
-                    "url": "https://symfony.com/sponsor",
-                    "type": "custom"
-                },
-                {
-                    "url": "https://github.com/fabpot",
-                    "type": "github"
-                },
-                {
-                    "url": "https://tidelift.com/funding/github/packagist/symfony/symfony",
-                    "type": "tidelift"
-                }
-            ],
             "time": "2020-02-24T13:10:00+00:00"
         },
         {
@@ -6636,6 +6608,5 @@
     "platform-overrides": {
         "php": "7.3.10",
         "ext-mcrypt": "1.0.0"
-    },
-    "plugin-api-version": "1.1.0"
+    }
 }
