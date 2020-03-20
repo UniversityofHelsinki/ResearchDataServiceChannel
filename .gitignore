@@ -25,3 +25,4 @@ private_files/
 
 *.sql
 artifact.tar.gz
+/.gitattributes
