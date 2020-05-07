@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "8680d67f5f9003757a86284276483a50",
+    "content-hash": "fd7f0bf7d58ea71b06a02ad47c38c84b",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -1613,9 +1613,6 @@
             },
             "type": "drupal-module",
             "extra": {
-                "branch-alias": {
-                    "dev-2.x": "2.x-dev"
-                },
                 "drupal": {
                     "version": "8.x-2.0",
                     "datestamp": "1573751237",
@@ -1695,9 +1692,6 @@
             },
             "type": "drupal-module",
             "extra": {
-                "branch-alias": {
-                    "dev-1.x": "1.x-dev"
-                },
                 "drupal": {
                     "version": "8.x-1.10",
                     "datestamp": "1571249584",
@@ -1799,9 +1793,6 @@
             },
             "type": "drupal-module",
             "extra": {
-                "branch-alias": {
-                    "dev-3.x": "3.x-dev"
-                },
                 "drupal": {
                     "version": "8.x-3.0-alpha6",
                     "datestamp": "1550449381",
@@ -2219,9 +2210,6 @@
             },
             "type": "drupal-module",
             "extra": {
-                "branch-alias": {
-                    "dev-3.x": "3.x-dev"
-                },
                 "drupal": {
                     "version": "8.x-3.2",
                     "datestamp": "1550728386",
@@ -2316,9 +2304,6 @@
             },
             "type": "drupal-module",
             "extra": {
-                "branch-alias": {
-                    "dev-3.x": "3.x-dev"
-                },
                 "drupal": {
                     "version": "8.x-3.4",
                     "datestamp": "1574750285",
@@ -2385,9 +2370,6 @@
             },
             "type": "drupal-module",
             "extra": {
-                "branch-alias": {
-                    "dev-1.x": "1.x-dev"
-                },
                 "drupal": {
                     "version": "8.x-1.2",
                     "datestamp": "1569916976",
@@ -2609,9 +2591,6 @@
             },
             "type": "drupal-module",
             "extra": {
-                "branch-alias": {
-                    "dev-1.x": "1.x-dev"
-                },
                 "drupal": {
                     "version": "8.x-1.6",
                     "datestamp": "1575467285",
@@ -2668,9 +2647,6 @@
             },
             "type": "drupal-module",
             "extra": {
-                "branch-alias": {
-                    "dev-1.x": "1.x-dev"
-                },
                 "drupal": {
                     "version": "8.x-1.17",
                     "datestamp": "1557845581",
@@ -2729,9 +2705,6 @@
             },
             "type": "drupal-module",
             "extra": {
-                "branch-alias": {
-                    "dev-2.x": "2.x-dev"
-                },
                 "drupal": {
                     "version": "8.x-2.0-alpha1",
                     "datestamp": "1488462483",
@@ -2752,6 +2725,10 @@
                 {
                     "name": "cweagans",
                     "homepage": "https://www.drupal.org/user/404732"
+                },
+                {
+                    "name": "japerry",
+                    "homepage": "https://www.drupal.org/user/45640"
                 },
                 {
                     "name": "roderik",
@@ -2791,9 +2768,6 @@
             },
             "type": "drupal-module",
             "extra": {
-                "branch-alias": {
-                    "dev-1.x": "1.x-dev"
-                },
                 "drupal": {
                     "version": "8.x-1.0",
                     "datestamp": "1580492032",
@@ -2921,9 +2895,6 @@
             },
             "type": "drupal-module",
             "extra": {
-                "branch-alias": {
-                    "dev-1.x": "1.x-dev"
-                },
                 "drupal": {
                     "version": "8.x-1.6",
                     "datestamp": "1577708583",
@@ -2976,41 +2947,50 @@
         },
         {
             "name": "drupal/webform",
-            "version": "5.0.0",
+            "version": "5.11.0",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/webform.git",
-                "reference": "8.x-5.0"
+                "reference": "8.x-5.11"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/webform-8.x-5.0.zip",
-                "reference": "8.x-5.0",
-                "shasum": "bcd62f539a58549c2323b9d17d47a73e8a8e0917"
+                "url": "https://ftp.drupal.org/files/projects/webform-8.x-5.11.zip",
+                "reference": "8.x-5.11",
+                "shasum": "2a8664687d2b0b6071bab011dbbb431e15c83710"
             },
             "require": {
-                "drupal/core": "*"
+                "drupal/core": "^8.7.7 || ^9"
             },
             "require-dev": {
                 "drupal/address": "~1.4",
+                "drupal/bootstrap": "~3.0",
+                "drupal/captcha": "~1.0",
                 "drupal/chosen": "~2.6",
                 "drupal/devel": "*",
-                "drupal/jsonapi": "~2.0",
+                "drupal/entity_print": "*",
+                "drupal/gnode": "*",
+                "drupal/group": "*",
+                "drupal/mailsystem": "~4.1",
                 "drupal/select2": "~1.1",
-                "drupal/token": "~1.3",
+                "drupal/smtp": "~1.0",
+                "drupal/telephone_validation": "^2.2",
+                "drupal/token": "*",
                 "drupal/webform_access": "*",
+                "drupal/webform_attachment": "*",
+                "drupal/webform_devel": "*",
+                "drupal/webform_entity_print": "*",
+                "drupal/webform_group": "*",
                 "drupal/webform_node": "*",
+                "drupal/webform_options_limit": "*",
                 "drupal/webform_scheduled_email": "*",
                 "drupal/webform_ui": "*"
             },
             "type": "drupal-module",
             "extra": {
-                "branch-alias": {
-                    "dev-5.x": "5.x-dev"
-                },
                 "drupal": {
-                    "version": "8.x-5.0",
-                    "datestamp": "1546458480",
+                    "version": "8.x-5.11",
+                    "datestamp": "1588787959",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -3024,7 +3004,7 @@
             },
             "notification-url": "https://packages.drupal.org/8/downloads",
             "license": [
-                "GPL-2.0+"
+                "GPL-2.0-or-later"
             ],
             "authors": [
                 {
@@ -3038,8 +3018,9 @@
                     "role": "Co-maintainer"
                 },
                 {
-                    "name": "bucefal91",
-                    "homepage": "https://www.drupal.org/user/504128"
+                    "name": "Contributors",
+                    "homepage": "https://www.drupal.org/node/7404/committers",
+                    "role": "Contributor"
                 },
                 {
                     "name": "fenstrat",
@@ -3073,7 +3054,7 @@
             "description": "Enables the creation of webforms and questionnaires.",
             "homepage": "https://drupal.org/project/webform",
             "support": {
-                "source": "http://cgit.drupalcode.org/webform",
+                "source": "https://git.drupalcode.org/project/webform",
                 "issues": "https://www.drupal.org/project/issues/webform?version=8.x",
                 "docs": "https://www.drupal.org/docs/8/modules/webform",
                 "forum": "https://drupal.stackexchange.com/questions/tagged/webform"
@@ -3650,6 +3631,7 @@
                     "email": "jakub.onderka@gmail.com"
                 }
             ],
+            "abandoned": "php-parallel-lint/php-console-color",
             "time": "2018-09-29T17:23:10+00:00"
         },
         {
@@ -3696,6 +3678,7 @@
                 }
             ],
             "description": "Highlight PHP code in terminal",
+            "abandoned": "php-parallel-lint/php-console-highlighter",
             "time": "2018-09-29T18:48:56+00:00"
         },
         {
@@ -3913,11 +3896,6 @@
                 "ext-gettext": "Install gettext and php5-gettext libs to handle translations"
             },
             "type": "library",
-            "extra": {
-                "patches_applied": {
-                    "deprecations": "https://patch-diff.githubusercontent.com/raw/onelogin/php-saml/pull/333.patch"
-                }
-            },
             "autoload": {
                 "classmap": [
                     "extlib/xmlseclibs",
@@ -3936,7 +3914,12 @@
                 "onelogin",
                 "saml"
             ],
-            "time": "2019-09-11T13:55:25+00:00"
+            "time": "2019-09-11T13:55:25+00:00",
+            "extra": {
+                "patches_applied": {
+                    "deprecations": "https://patch-diff.githubusercontent.com/raw/onelogin/php-saml/pull/333.patch"
+                }
+            }
         },
         {
             "name": "paragonie/random_compat",
@@ -4977,20 +4960,6 @@
             ],
             "description": "Symfony Finder Component",
             "homepage": "https://symfony.com",
-            "funding": [
-                {
-                    "url": "https://symfony.com/sponsor",
-                    "type": "custom"
-                },
-                {
-                    "url": "https://github.com/fabpot",
-                    "type": "github"
-                },
-                {
-                    "url": "https://tidelift.com/funding/github/packagist/symfony/symfony",
-                    "type": "tidelift"
-                }
-            ],
             "time": "2020-02-14T07:42:58+00:00"
         },
         {
@@ -6032,20 +6001,6 @@
                 "debug",
                 "dump"
             ],
-            "funding": [
-                {
-                    "url": "https://symfony.com/sponsor",
-                    "type": "custom"
-                },
-                {
-                    "url": "https://github.com/fabpot",
-                    "type": "github"
-                },
-                {
-                    "url": "https://tidelift.com/funding/github/packagist/symfony/symfony",
-                    "type": "tidelift"
-                }
-            ],
             "time": "2020-02-24T13:10:00+00:00"
         },
         {
@@ -6636,6 +6591,5 @@
     "platform-overrides": {
         "php": "7.3.10",
         "ext-mcrypt": "1.0.0"
-    },
-    "plugin-api-version": "1.1.0"
+    }
 }
