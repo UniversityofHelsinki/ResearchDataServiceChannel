@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "fd7f0bf7d58ea71b06a02ad47c38c84b",
+    "content-hash": "1003a0cf9e1a2311b1b75ca69f358ab3",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -2283,30 +2283,30 @@
         },
         {
             "name": "drupal/ds",
-            "version": "3.4.0",
+            "version": "3.6.0",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/ds.git",
-                "reference": "8.x-3.4"
+                "reference": "8.x-3.6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/ds-8.x-3.4.zip",
-                "reference": "8.x-3.4",
-                "shasum": "ebf070ba2f7cf78a62cf74678a9948546a93e773"
+                "url": "https://ftp.drupal.org/files/projects/ds-8.x-3.6.zip",
+                "reference": "8.x-3.6",
+                "shasum": "77690af47a87089c4345ba0987e2a85c9a8f58f1"
             },
             "require": {
-                "drupal/core": "^8.6"
+                "drupal/core": "^8.8 || ^9"
             },
             "require-dev": {
-                "drupal/devel": "*",
-                "drupal/field_group": "*"
+                "drupal/devel": "3.x-dev",
+                "drupal/field_group": "3.x-dev"
             },
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "8.x-3.4",
-                    "datestamp": "1574750285",
+                    "version": "8.x-3.6",
+                    "datestamp": "1588146702",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
