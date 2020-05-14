@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "1003a0cf9e1a2311b1b75ca69f358ab3",
+    "content-hash": "35bc9d3301cc4db69b365bd8990a431e",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -2193,26 +2193,26 @@
         },
         {
             "name": "drupal/ctools",
-            "version": "3.2.0",
+            "version": "3.4.0",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/ctools.git",
-                "reference": "8.x-3.2"
+                "reference": "8.x-3.4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/ctools-8.x-3.2.zip",
-                "reference": "8.x-3.2",
-                "shasum": "d6da87239b64ba708a5977e7b33b1e009e36b091"
+                "url": "https://ftp.drupal.org/files/projects/ctools-8.x-3.4.zip",
+                "reference": "8.x-3.4",
+                "shasum": "016ca5abb7ac4ca720352a72e8989f3ef0e20539"
             },
             "require": {
-                "drupal/core": "^8.5"
+                "drupal/core": "^8.7.7 || ^9"
             },
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "8.x-3.2",
-                    "datestamp": "1550728386",
+                    "version": "8.x-3.4",
+                    "datestamp": "1585763383",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -2277,7 +2277,7 @@
             "description": "Provides a number of utility and helper APIs for Drupal developers and site builders.",
             "homepage": "https://www.drupal.org/project/ctools",
             "support": {
-                "source": "http://cgit.drupalcode.org/ctools",
+                "source": "https://git.drupalcode.org/project/ctools",
                 "issues": "https://www.drupal.org/project/issues/ctools"
             }
         },
@@ -2572,31 +2572,39 @@
         },
         {
             "name": "drupal/pathauto",
-            "version": "1.6.0",
+            "version": "1.8.0",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/pathauto.git",
-                "reference": "8.x-1.6"
+                "reference": "8.x-1.8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/pathauto-8.x-1.6.zip",
-                "reference": "8.x-1.6",
-                "shasum": "eb976ae110d73c06fafb1b657adb967dd2cb8246"
+                "url": "https://ftp.drupal.org/files/projects/pathauto-8.x-1.8.zip",
+                "reference": "8.x-1.8",
+                "shasum": "ede3216abb9c4f77709338d9147334c595046329"
             },
             "require": {
-                "drupal/core": "^8.6",
+                "drupal/core": "^8.8 || ^9",
                 "drupal/ctools": "*",
                 "drupal/token": "*"
+            },
+            "suggest": {
+                "drupal/redirect": "When installed Pathauto will provide a new \"Update Action\" in case your URLs change. This is the recommended update action and is considered the best practice for SEO and usability."
             },
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "8.x-1.6",
-                    "datestamp": "1575467285",
+                    "version": "8.x-1.8",
+                    "datestamp": "1588103046",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
+                    }
+                },
+                "drush": {
+                    "services": {
+                        "drush.services.yml": "^9 || ^10"
                     }
                 }
             },
@@ -2625,7 +2633,9 @@
             "description": "Provides a mechanism for modules to automatically generate aliases for the content they manage.",
             "homepage": "https://www.drupal.org/project/pathauto",
             "support": {
-                "source": "https://git.drupalcode.org/project/pathauto"
+                "source": "https://cgit.drupalcode.org/pathauto",
+                "issues": "https://www.drupal.org/project/issues/pathauto",
+                "documentation": "https://www.drupal.org/docs/8/modules/pathauto"
             }
         },
         {
@@ -2878,26 +2888,26 @@
         },
         {
             "name": "drupal/token",
-            "version": "1.6.0",
+            "version": "1.7.0",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/token.git",
-                "reference": "8.x-1.6"
+                "reference": "8.x-1.7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/token-8.x-1.6.zip",
-                "reference": "8.x-1.6",
-                "shasum": "22039a3d927220609e708932ac5c501b90ca4925"
+                "url": "https://ftp.drupal.org/files/projects/token-8.x-1.7.zip",
+                "reference": "8.x-1.7",
+                "shasum": "c7e3a3757282e4c94e3c1fff08d01e22155cb853"
             },
             "require": {
-                "drupal/core": "^8.7.7 || ^9"
+                "drupal/core": "^8.8 || ^9"
             },
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "8.x-1.6",
-                    "datestamp": "1577708583",
+                    "version": "8.x-1.7",
+                    "datestamp": "1589314266",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -2947,17 +2957,17 @@
         },
         {
             "name": "drupal/webform",
-            "version": "5.11.0",
+            "version": "5.12.0",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/webform.git",
-                "reference": "8.x-5.11"
+                "reference": "8.x-5.12"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/webform-8.x-5.11.zip",
-                "reference": "8.x-5.11",
-                "shasum": "2a8664687d2b0b6071bab011dbbb431e15c83710"
+                "url": "https://ftp.drupal.org/files/projects/webform-8.x-5.12.zip",
+                "reference": "8.x-5.12",
+                "shasum": "5ad813c6c622993f24078db9c47e81e598c954ba"
             },
             "require": {
                 "drupal/core": "^8.7.7 || ^9"
@@ -2968,14 +2978,14 @@
                 "drupal/captcha": "~1.0",
                 "drupal/chosen": "~2.6",
                 "drupal/devel": "*",
-                "drupal/entity_print": "*",
+                "drupal/entity_print": "^2.1",
                 "drupal/gnode": "*",
-                "drupal/group": "*",
+                "drupal/group": "~1.0",
                 "drupal/mailsystem": "~4.1",
                 "drupal/select2": "~1.1",
                 "drupal/smtp": "~1.0",
                 "drupal/telephone_validation": "^2.2",
-                "drupal/token": "*",
+                "drupal/token": "~1.3",
                 "drupal/webform_access": "*",
                 "drupal/webform_attachment": "*",
                 "drupal/webform_devel": "*",
@@ -2989,8 +2999,8 @@
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "8.x-5.11",
-                    "datestamp": "1588787959",
+                    "version": "8.x-5.12",
+                    "datestamp": "1589389825",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
