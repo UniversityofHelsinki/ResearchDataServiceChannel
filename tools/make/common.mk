@@ -17,7 +17,7 @@ PHONY += artifact
 # This command can always be run on host
 artifact: RUN_ON := host
 artifact: ## Make tar.gz package from the current build
-	$(call step,Create artifact (${RUN_ON})...)
+	$(call step,Create artifact...)
 	@${ARTIFACT_CMD}
 
 PHONY += build
@@ -30,22 +30,17 @@ PHONY += build-dev
 build-dev: build
 
 PHONY += build-testing
-build-testing: ENV := testing
-build-testing: build
+build-testing:
+	@$(MAKE) build ENV=testing
 
 PHONY += build-production
-build-production: ENV := production
-build-production: build
+build-production:
+	@$(MAKE) build ENV=production
 
 PHONY += clean
 clean: ## Clean folders
 	$(call step,Clean folders:\n- Following folders will be removed: ${CLEAN_FOLDERS})
 	@rm -rf ${CLEAN_FOLDERS}
-
-PHONY += help
-help: ## List all make commands
-	$(call step,Available make commands:)
-	@cat $(MAKEFILE_LIST) | grep -e "^[a-zA-Z_\-]*: *.*## *" | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}' | sort
 
 PHONY += self-update
 self-update: ## Self-update makefiles from druidfi/tools

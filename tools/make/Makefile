@@ -4,7 +4,7 @@ BUILD_TARGETS :=
 CLEAN_FOLDERS := node_modules
 COMPOSER_BIN := $(shell which composer || echo no)
 COMPOSER_JSON_EXISTS := $(shell test -f composer.json && echo yes || echo no)
-DOCKER_COMPOSE_BIN := $(shell which docker-compose || echo no)
+DOCKER_COMPOSE_BIN := $(shell which docker-compose > /dev/null 2>&1 && which docker-compose || echo no)
 DOCKER_COMPOSE_YML_EXISTS := $(shell test -f docker-compose.yml && echo yes || echo no)
 DRUIDFI_TOOLS_MAKE_DIR := $(dir $(lastword $(MAKEFILE_LIST)))
 ENV := dev
@@ -14,6 +14,10 @@ UNAME_S := $(shell uname -s)
 # Shorten with https://git.io/ : https://raw.githubusercontent.com/druidfi/tools/master/update.sh
 UPDATE_SCRIPT_URL := https://git.io/fh771
 WEBROOT ?= public
+
+# Detect app
+IS_DRUPAL := $(shell test -f $(WEBROOT)/sites/default/settings.php && echo yes || echo no)
+IS_WP := $(shell test -f $(WEBROOT)/wp-settings.php && echo yes || echo no)
 
 # Detect additional tooling
 AMAZEEIO_LEGACY := $(shell test -f .amazeeio.yml && echo yes || echo no)
@@ -29,12 +33,6 @@ else ifeq ($(WODBY),yes)
 else
 	SYSTEM := WHOKNOWS
 endif
-
-# Colors
-NO_COLOR=\033[0m
-GREEN=\033[0;32m
-RED=\033[0;31m
-YELLOW=\033[0;33m
 
 # If docker-compose.yml exists
 ifeq ($(DOCKER_COMPOSE_YML_EXISTS),yes)
@@ -67,6 +65,8 @@ debug: ## Show debug information
 	$(call dbg,ENV,${ENV})
 	$(call dbg,PHP_BIN,${PHP_BIN})
 	$(call dbg,RUN_ON,${RUN_ON})
+	$(call dbg,IS_DRUPAL,${IS_DRUPAL})
+	$(call dbg,IS_WP,${IS_WP})
 	$(call dbg,AMAZEEIO_LEGACY,${AMAZEEIO_LEGACY})
 	$(call dbg,AMAZEEIO_LAGOON,${AMAZEEIO_LAGOON})
 	$(call dbg,WODBY,${WODBY})
@@ -80,17 +80,7 @@ else
 endif
 	@printf "${GREEN}End of debug.${NO_COLOR}\n"
 
-define dbg
-	@printf "${GREEN}${1}:${NO_COLOR} ${2}\n"
-endef
-
-define step
-	@printf "\n${YELLOW}${1}${NO_COLOR}\n\n"
-endef
-
-define warn
-	@printf "\n${YELLOW}[warning]${NO_COLOR} ${1}\n\n"
-endef
+include $(DRUIDFI_TOOLS_MAKE_DIR)utils.mk
 
 # Include druidfi/tools make files
 include $(DRUIDFI_TOOLS_MAKE_DIR)include.mk

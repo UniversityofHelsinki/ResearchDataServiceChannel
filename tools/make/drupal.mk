@@ -1,7 +1,16 @@
 DRUPAL_CONF_EXISTS := $(shell test -f conf/cmi/core.extension.yml && echo yes || echo no)
 DRUPAL_FRESH_TARGETS := up build sync post-install
 DRUPAL_NEW_TARGETS := up build drush-si drush-uli
+ifeq ($(DRUPAL_VERSION),7)
+DRUPAL_POST_INSTALL_TARGETS := drush-updb drush-cr drush-uli
+else
 DRUPAL_POST_INSTALL_TARGETS := drush-updb drush-cim drush-uli
+CLEAN_FOLDERS += ${WEBROOT}/core
+CLEAN_FOLDERS += ${WEBROOT}/libraries
+CLEAN_FOLDERS += ${WEBROOT}/modules/contrib
+CLEAN_FOLDERS += ${WEBROOT}/profiles
+CLEAN_FOLDERS += ${WEBROOT}/themes/contrib
+endif
 DRUPAL_PROFILE ?= minimal
 DRUPAL_SYNC_FILES ?= yes
 DRUPAL_SYNC_SOURCE ?= production
@@ -18,12 +27,17 @@ ifdef DRUPAL_WEBROOT
 	WEBROOT := $(DRUPAL_WEBROOT)
 endif
 
+PHONY += drupal-update
+drupal-update: ## Update Drupal core with Composer
+	$(call step,Update Drupal core with Composer...)
+	@composer update "drupal/core-*" --with-dependencies
+
 PHONY += drush-cex
 drush-cex: ## Export configuration
 ifeq ($(DRUPAL_VERSION),7)
 	$(call warn,\"drush cex\" is not Drupal 7 command\n)
 else
-	$(call step,Export configuration (${RUN_ON})...)
+	$(call step,Export configuration...)
 	$(call drush_on_${RUN_ON},cex -y)
 endif
 
@@ -32,12 +46,12 @@ drush-cim: ## Import configuration
 ifeq ($(DRUPAL_VERSION),7)
 	$(call warn,\"drush cim\" is not Drupal 7 command\n)
 else
-	$(call step,Import configuration (${RUN_ON})...)
+	$(call step,Import configuration...)
 	$(call drush_on_${RUN_ON},cim -y)
 endif
 
 PHONY += drush-cc
-drush-cc: drush-cr ## Clear caches (alias for drush-cr)
+drush-cc: drush-cr
 
 PHONY += drush-cr
 drush-cr: ## Clear caches
@@ -55,7 +69,11 @@ drush-status: ## Show Drupal status information
 PHONY += drush-uli
 drush-uli: ## Get login link
 	$(call step,Login to your site with:)
+ifeq ($(DRUPAL_VERSION),7)
 	$(call drush_on_${RUN_ON},uli)
+else
+	$(call drush_on_${RUN_ON},uli admin/reports/status)
+endif
 
 PHONY += drush-si
 ifeq ($(DRUPAL_CONF_EXISTS)$(DRUPAL_VERSION),yes8)
@@ -86,10 +104,19 @@ post-install: ## Run post-install Drush actions
 PHONY += drush-sync
 drush-sync: ## Sync database and files
 	$(call step,Sync database from @$(DRUPAL_SYNC_SOURCE)...)
-	$(call drush_on_${RUN_ON},sql-sync -y @$(DRUPAL_SYNC_SOURCE) @self)
+	$(call drush_on_${RUN_ON},sql-sync -y --structure-tables-key=common @$(DRUPAL_SYNC_SOURCE) @self)
 ifeq ($(DRUPAL_SYNC_FILES),yes)
 	$(call step,Sync files from @$(DRUPAL_SYNC_SOURCE)...)
 	$(call drush_on_${RUN_ON},-y rsync --mode=akzu @$(DRUPAL_SYNC_SOURCE):%files @self:%files)
+endif
+
+mmfix: MODULE := MISSING_MODULE
+mmfix:
+	$(call step,Remove missing module '$(MODULE)')
+ifeq ($(DRUPAL_VERSION),7)
+	$(call drush_on_${RUN_ON},sql-query \"DELETE from system where type = 'module' AND name = '$(MODULE)';\")
+else
+	$(call drush_on_${RUN_ON},sql-query \"DELETE FROM key_value WHERE collection='system.schema' AND name='module_name';\")
 endif
 
 define drush_on_docker
@@ -97,5 +124,5 @@ define drush_on_docker
 endef
 
 define drush_on_host
-	@drush -r $$PWD/${WEBROOT} --ansi --strict=0 $(1)
+	@drush -r ${DOCKER_PROJECT_ROOT}/${WEBROOT} --ansi --strict=0 $(1)
 endef
