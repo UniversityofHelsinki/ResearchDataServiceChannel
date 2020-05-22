@@ -21,7 +21,7 @@
         "drupal/core-composer-scaffold": "^8.8",
         "drupal/core-recommended": "^8.8",
         "drupal/ds": "3.6.0",
-        "drupal/externalauth": "^1.2",
+        "drupal/externalauth": "1.2",
         "drupal/fico": "1.0",
         "drupal/google_analytics": "2.4",
         "drupal/libraries": "3.x-dev",

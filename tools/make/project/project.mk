@@ -26,4 +26,9 @@ drush-sync-prompt-for-username:
 PHONY += shell-test
 shell-test: HOST := datasupport-test.it.helsinki.fi
 shell-test: ## Login to test server
-	@ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no $(shell bash -c 'read -p "$(PROMPT) " u; echo $$u')@$(HOST)
+	@ssh -t $(shell bash -c 'read -p "$(PROMPT) " u; echo $$u')@$(HOST) "cd /data/rds/current ; bash"
+
+PHONY += shell-prod
+shell-prod: HOST := datasupport.helsinki.fi
+shell-prod:
+	@ssh -t $(shell bash -c 'read -p "$(PROMPT) " u; echo $$u')@$(HOST) "cd /data/rds/current ; bash"

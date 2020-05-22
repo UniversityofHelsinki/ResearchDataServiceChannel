@@ -17,7 +17,7 @@
         depth: 1
 
     - name: "Build code for {{ project_env }} environment"
-      local_action: "command docker run --rm -v {{ lookup('env', 'PWD') }}/{{ deploy_folder }}:/app --user=druid druidfi/drupal:7.3 composer install --no-dev --ignore-platform-reqs"
+      local_action: "command docker run --rm -v {{ lookup('env', 'PWD') }}/{{ deploy_folder }}:/app druidfi/drupal:7.3 composer install --no-dev --ignore-platform-reqs"
 
     - name: "Create release artifact for {{ project_env }} environment"
       local_action: "command tar -hczf artifact.tar.gz --files-from=conf/artifact/include --exclude-from=conf/artifact/exclude"
