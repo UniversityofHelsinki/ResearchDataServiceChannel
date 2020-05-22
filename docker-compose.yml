@@ -4,7 +4,7 @@ services:
 
   app:
     hostname: "${DRUPAL_HOSTNAME}"
-    container_name: "${COMPOSE_PROJECT_NAME}-drupal"
+    container_name: "${COMPOSE_PROJECT_NAME}-app"
     image: "${DRUPAL_IMAGE}"
     volumes:
       - .:/app:delegated
@@ -15,7 +15,7 @@ services:
       #XDEBUG_ENABLE: "true"
     networks:
       - internal
-      - dev-network
+      - stonehenge-network
     labels:
       traefik.enable: true
       traefik.port: 8080
@@ -39,7 +39,7 @@ services:
       - app
     networks:
       - internal
-      - dev-network
+      - stonehenge-network
     labels:
       traefik.enable: true
       traefik.port: 6081
@@ -49,8 +49,7 @@ services:
 networks:
   internal:
     external: false
-  dev-network:
-    name: stonehenge-network
+  stonehenge-network:
     external: true
 
 volumes:
