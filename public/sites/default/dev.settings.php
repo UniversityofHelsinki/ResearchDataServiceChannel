@@ -1,5 +1,8 @@
 <?php
 
+// Skip file system permissions hardening.
+$settings['skip_permissions_hardening'] = TRUE;
+
 $settings['reverse_proxy'] = FALSE;
 
 // Show all error messages on the site.
