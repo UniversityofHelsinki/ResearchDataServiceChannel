@@ -31,7 +31,7 @@
         "drupal/stage_file_proxy": "^1.0",
         "drupal/system_status": "^2.8",
         "drupal/token": "^1.5",
-        "drupal/webform": "5.12.0",
+        "drupal/webform": "^5.13",
         "drush/drush": "^10.2",
         "zaporylie/composer-drupal-optimizations": "^1.0"
     },
