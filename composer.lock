@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "11c2366c99584c456df8a7dcb13143e3",
+    "content-hash": "b2a4053563cfc41868b53d5a22198eff",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -2066,21 +2066,21 @@
         },
         {
             "name": "drupal/core-composer-scaffold",
-            "version": "8.8.6",
+            "version": "9.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/drupal/core-composer-scaffold.git",
-                "reference": "4825cb5234c28dff79ad298db582dfb23ff4ca59"
+                "reference": "fb112a238577589311395099324ddec7fb4176d7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/drupal/core-composer-scaffold/zipball/4825cb5234c28dff79ad298db582dfb23ff4ca59",
-                "reference": "4825cb5234c28dff79ad298db582dfb23ff4ca59",
+                "url": "https://api.github.com/repos/drupal/core-composer-scaffold/zipball/fb112a238577589311395099324ddec7fb4176d7",
+                "reference": "fb112a238577589311395099324ddec7fb4176d7",
                 "shasum": ""
             },
             "require": {
-                "composer-plugin-api": "^1.0.0",
-                "php": ">=7.0.8"
+                "composer-plugin-api": "^1 || ^2",
+                "php": ">=7.3.0"
             },
             "conflict": {
                 "drupal-composer/drupal-scaffold": "*"
@@ -2109,7 +2109,7 @@
             "keywords": [
                 "drupal"
             ],
-            "time": "2020-03-10T10:15:17+00:00"
+            "time": "2020-05-29T11:32:13+00:00"
         },
         {
             "name": "drupal/core-recommended",
@@ -2299,7 +2299,7 @@
                 "drupal/core": "^8.8 || ^9"
             },
             "require-dev": {
-                "drupal/devel": "3.x-dev",
+                "drupal/devel": "*",
                 "drupal/field_group": "3.x-dev"
             },
             "type": "drupal-module",
@@ -2477,9 +2477,6 @@
             },
             "type": "drupal-module",
             "extra": {
-                "branch-alias": {
-                    "dev-2.x": "2.x-dev"
-                },
                 "drupal": {
                     "version": "8.x-2.4",
                     "datestamp": "1548968580",
@@ -2501,6 +2498,22 @@
                 {
                     "name": "See other contributors",
                     "homepage": "https://www.drupal.org/node/49388/committers"
+                },
+                {
+                    "name": "ixismark",
+                    "homepage": "https://www.drupal.org/user/3632333"
+                },
+                {
+                    "name": "japerry",
+                    "homepage": "https://www.drupal.org/user/45640"
+                },
+                {
+                    "name": "pfaocle",
+                    "homepage": "https://www.drupal.org/user/9740"
+                },
+                {
+                    "name": "roberto.rivera.ixis",
+                    "homepage": "https://www.drupal.org/user/3632325"
                 }
             ],
             "description": "Allows your site to be tracked by Google Analytics by adding a Javascript tracking code to every page.",
@@ -3903,11 +3916,6 @@
                 "ext-gettext": "Install gettext and php5-gettext libs to handle translations"
             },
             "type": "library",
-            "extra": {
-                "patches_applied": {
-                    "deprecations": "https://patch-diff.githubusercontent.com/raw/onelogin/php-saml/pull/333.patch"
-                }
-            },
             "autoload": {
                 "classmap": [
                     "extlib/xmlseclibs",
@@ -3926,7 +3934,12 @@
                 "onelogin",
                 "saml"
             ],
-            "time": "2019-09-11T13:55:25+00:00"
+            "time": "2019-09-11T13:55:25+00:00",
+            "extra": {
+                "patches_applied": {
+                    "deprecations": "https://patch-diff.githubusercontent.com/raw/onelogin/php-saml/pull/333.patch"
+                }
+            }
         },
         {
             "name": "paragonie/random_compat",
@@ -6598,6 +6611,5 @@
     "platform-overrides": {
         "php": "7.3.10",
         "ext-mcrypt": "1.0.0"
-    },
-    "plugin-api-version": "1.1.0"
+    }
 }
