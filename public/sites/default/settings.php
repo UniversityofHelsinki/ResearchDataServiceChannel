@@ -1,16 +1,31 @@
 <?php
 
-// Check ENV and load relevant configuration.
-require_once 'drupal.configurator.php';
-
 /**
- * Only in Wodby environment.
+ * Some servers don't allow setting HOSTNAME globally, use then DRUPAL_HOSTNAME.
  */
 
-if (isset($_SERVER['WODBY_APP_NAME'])) {
-  // The include won't be added automatically if it's already there.
-  include '/var/www/conf/wodby.settings.php';
+if (getenv('DRUPAL_HOSTNAME')) {
+  putenv('HOSTNAME='. getenv('DRUPAL_HOSTNAME'));
+}
 
-  // Override setting from wodby.settings.php.
-  $config_directories[CONFIG_SYNC_DIRECTORY] = '../conf/cmi';
+/**
+ * ENV. By default it's least open, so prod.
+ */
+
+$APP_ENV = getenv('APP_ENV') ?: 'prod';
+
+/**
+ * Load/add files (if exist) in following order:
+ */
+
+foreach (['all', $APP_ENV, 'local'] as $set) {
+  // all.settings.php, dev.settings.php and local.settings.php
+  if (file_exists(__DIR__ . '/' . $set . '.settings.php')) {
+    include __DIR__ . '/' . $set . '.settings.php';
+  }
+
+  // all.services.yml, dev.services.yml and local.services.yml
+  if (file_exists(__DIR__ . '/' . $set . '.services.yml')) {
+    $settings['container_yamls'][] = __DIR__ . '/' . $set . '.services.yml';
+  }
 }
