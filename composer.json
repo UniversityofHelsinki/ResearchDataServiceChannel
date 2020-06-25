@@ -33,7 +33,7 @@
         "drupal/system_status": "^2.8",
         "drupal/token": "^1.5",
         "drupal/webform": "^5.13",
-        "drush/drush": "^10.2",
+        "drush/drush": "^10.3",
         "zaporylie/composer-drupal-optimizations": "^1.0"
     },
     "require-dev": {
