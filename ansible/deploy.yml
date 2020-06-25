@@ -76,12 +76,11 @@
             group: nginx
             mode: '0775'
 
-        - name: Run drush commands
-          shell: drush -y -r {{ projects.default.public_root }} {{ item }} || true
-          with_items:
-            - "updb -y" # Performs database updates.
-            - "cim -y"  # Imports configuration changes.
-            - "cr"      # Clears caches.
+        - name: Run drush deploy
+          shell: /usr/local/bin/drush -r {{ projects.default.public_root }} deploy 2>&1
+          register: output
+
+        - debug: var=output.stdout
 
       become: yes
 
