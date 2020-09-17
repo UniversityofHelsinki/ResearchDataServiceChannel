@@ -3,6 +3,9 @@
 // Skip file system permissions hardening.
 $settings['skip_permissions_hardening'] = TRUE;
 
+// Public files path
+$settings['file_public_path'] = 'sites/default/files';
+
 $settings['reverse_proxy'] = FALSE;
 
 // Show all error messages on the site.
