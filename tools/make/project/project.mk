@@ -9,7 +9,7 @@ SYNC_TARGETS := drush-sync-prompt-for-username
 ifeq ($(ENV),production)
 	DRUPAL_POST_INSTALL_TARGETS := drush-updb drush-cr drush-uli
 else
-	DRUPAL_POST_INSTALL_TARGETS := drush-updb drush-filestage drush-cr drush-uli
+	DRUPAL_POST_INSTALL_TARGETS := create-file-folders drush-updb drush-filestage drush-cr drush-uli
 endif
 
 PHONY += drush-filestage
@@ -32,3 +32,10 @@ PHONY += shell-prod
 shell-prod: HOST := datasupport.helsinki.fi
 shell-prod:
 	@ssh -t $(shell bash -c 'read -p "$(PROMPT) " u; echo $$u')@$(HOST) "cd /data/rds/current ; bash"
+
+PHONY += create-file-folders
+create-file-folders: public/sites/default/files
+
+public/sites/default/files:
+	@mkdir -p "$@"
+	@chmod 0777 "$@"
