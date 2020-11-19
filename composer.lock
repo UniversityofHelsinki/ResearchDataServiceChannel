@@ -1856,16 +1856,16 @@
         },
         {
             "name": "drupal/core",
-            "version": "8.8.10",
+            "version": "8.8.11",
             "source": {
                 "type": "git",
                 "url": "https://github.com/drupal/core.git",
-                "reference": "3df0c753d18bc8982d819f43b47759ae50be94bc"
+                "reference": "049a282977f56cf58aa2fb70bb9be9ca6c87d250"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/drupal/core/zipball/3df0c753d18bc8982d819f43b47759ae50be94bc",
-                "reference": "3df0c753d18bc8982d819f43b47759ae50be94bc",
+                "url": "https://api.github.com/repos/drupal/core/zipball/049a282977f56cf58aa2fb70bb9be9ca6c87d250",
+                "reference": "049a282977f56cf58aa2fb70bb9be9ca6c87d250",
                 "shasum": ""
             },
             "require": {
@@ -2082,11 +2082,11 @@
                 "GPL-2.0-or-later"
             ],
             "description": "Drupal is an open source content management platform powering millions of websites and applications.",
-            "time": "2020-09-16T11:22:50+00:00"
+            "time": "2020-11-17T22:06:51+00:00"
         },
         {
             "name": "drupal/core-composer-scaffold",
-            "version": "8.8.10",
+            "version": "8.8.11",
             "source": {
                 "type": "git",
                 "url": "https://github.com/drupal/core-composer-scaffold.git",
@@ -2133,16 +2133,16 @@
         },
         {
             "name": "drupal/core-recommended",
-            "version": "8.8.10",
+            "version": "8.8.11",
             "source": {
                 "type": "git",
                 "url": "https://github.com/drupal/core-recommended.git",
-                "reference": "561c32d3e82776aeb372d60145a814498ee3d432"
+                "reference": "56137126dd3ee7ec332c532f5dd4cbe5c26950f8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/drupal/core-recommended/zipball/561c32d3e82776aeb372d60145a814498ee3d432",
-                "reference": "561c32d3e82776aeb372d60145a814498ee3d432",
+                "url": "https://api.github.com/repos/drupal/core-recommended/zipball/56137126dd3ee7ec332c532f5dd4cbe5c26950f8",
+                "reference": "56137126dd3ee7ec332c532f5dd4cbe5c26950f8",
                 "shasum": ""
             },
             "require": {
@@ -2154,7 +2154,7 @@
                 "doctrine/common": "v2.7.3",
                 "doctrine/inflector": "v1.2.0",
                 "doctrine/lexer": "1.0.2",
-                "drupal/core": "8.8.10",
+                "drupal/core": "8.8.11",
                 "easyrdf/easyrdf": "0.9.1",
                 "egulias/email-validator": "2.1.11",
                 "guzzlehttp/guzzle": "6.3.3",
@@ -2208,7 +2208,7 @@
                 "GPL-2.0-or-later"
             ],
             "description": "Locked core dependencies; require this project INSTEAD OF drupal/core.",
-            "time": "2020-09-16T11:22:50+00:00"
+            "time": "2020-11-17T22:06:51+00:00"
         },
         {
             "name": "drupal/ctools",
