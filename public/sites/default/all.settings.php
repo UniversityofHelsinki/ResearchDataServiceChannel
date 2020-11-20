@@ -31,11 +31,3 @@ $settings['file_private_path'] = FALSE;
 
 // Temp directory
 $settings['file_temp_path'] = '/tmp';
-
-// Disable CND by default
-$config['cdn.settings'] = [
-  'status' => FALSE,
-];
-
-// Stage file proxy URL from production URL.
-$config['stage_file_proxy.settings']['origin'] = getenv('DRUPAL_PRODUCTION_URL');

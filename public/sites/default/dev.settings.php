@@ -25,3 +25,6 @@ $config['google_analytics.settings']['account'] = 'UA-XXXXXXXX-YY';
 
 // ESB API endpoint settings
 $config['esb']['url'] = 'https://dragon.it.helsinki.fi/devel/mildred/createticket';
+
+// Stage file proxy URL from production URL.
+$config['stage_file_proxy.settings']['origin'] = 'https://datasupport.helsinki.fi';
