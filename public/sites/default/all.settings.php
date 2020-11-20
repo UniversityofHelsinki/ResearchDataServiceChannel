@@ -31,3 +31,6 @@ $settings['file_private_path'] = FALSE;
 
 // Temp directory
 $settings['file_temp_path'] = '/tmp';
+
+// SAML settings
+include __DIR__ . '/saml.settings.php';

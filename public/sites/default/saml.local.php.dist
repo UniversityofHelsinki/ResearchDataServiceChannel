@@ -1,0 +1,26 @@
+<?php
+
+/**
+ * Configure SAML Authentication module.
+ */
+
+// SP Entity ID for development & testing
+$config['samlauth.authentication']['sp_entity_id'] = 'https://datasupport-test.it.helsinki.fi/samlauth';
+
+// SP Entity ID for production
+$config['samlauth.authentication']['sp_entity_id'] = 'https://datasupport.helsinki.fi/samlauth';
+
+// IdP for testing
+$config['samlauth.authentication']['idp_entity_id'] = 'https://login-test.it.helsinki.fi/shibboleth';
+$config['samlauth.authentication']['idp_single_sign_on_service'] = 'https://login-test.it.helsinki.fi/idp/profile/SAML2/Redirect/SSO';
+$config['samlauth.authentication']['idp_single_log_out_service'] = 'https://login-test.it.helsinki.fi/idp/profile/SAML2/Redirect/SLO';
+$config['samlauth.authentication']['idp_change_password_service'] = 'https://www.helsinki.fi/salasana';
+
+// IdP for production
+$config['samlauth.authentication']['idp_entity_id'] = 'https://login.helsinki.fi/shibboleth';
+$config['samlauth.authentication']['idp_single_sign_on_service'] = 'https://login.helsinki.fi/idp/profile/SAML2/Redirect/SSO';
+$config['samlauth.authentication']['idp_single_log_out_service'] = 'https://login.helsinki.fi/idp/logout.jsp';
+$config['samlauth.authentication']['idp_change_password_service'] = 'https://www.helsinki.fi/salasana';
+
+// SP conf
+$config['samlauth.authentication']['sp_cert_folder'] = '/data/rds/shared';

@@ -28,3 +28,13 @@ $config['esb']['url'] = 'https://dragon.it.helsinki.fi/devel/mildred/createticke
 
 // Stage file proxy URL from production URL.
 $config['stage_file_proxy.settings']['origin'] = 'https://datasupport.helsinki.fi';
+
+// SAML settings
+
+// SP Entity ID for development & testing
+$config['samlauth.authentication']['sp_entity_id'] = 'https://datasupport.docker.sh';
+$config['samlauth.authentication']['sp_cert_folder'] = '/app/conf/samlauth';
+$config['samlauth.authentication']['idp_entity_id'] = 'https://login-test.it.helsinki.fi/shibboleth';
+$config['samlauth.authentication']['idp_single_sign_on_service'] = 'https://idp-datasupport.docker.sh/simplesaml/saml2/idp/SSOService.php';
+$config['samlauth.authentication']['idp_single_log_out_service'] = 'https://idp-datasupport.docker.sh/simplesaml/saml2/idp/SingleLogoutService.php';
+$config['samlauth.authentication']['idp_change_password_service'] = 'https://www.helsinki.fi/salasana';
