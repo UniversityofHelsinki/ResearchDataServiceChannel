@@ -51,6 +51,30 @@ Deploy to production:
 $ make deploy ENV=production USERNAME=your_username
 ```
 
+## SSO in testing
+
+For testing order form, there is test IdP setup with following credentials:
+
+```
+teppotutkija:tutkija
+```
+
 ## Provisioning servers
 
 See instructions [here](ansible/readme.md)
+
+## Servers
+
+You can access server(s) with:
+
+```
+$ make shell-test|shell-prod
+```
+
+### Sudo in servers
+
+Some operations on the server need root, you can login as root with:
+
+```
+$ sudo su - root
+```
