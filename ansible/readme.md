@@ -8,7 +8,7 @@ $ ansible-galaxy install -r ansible/requirements.yml -p ansible/roles
 
 ## Provision production
 
-You need HY username and password for this.
+You need HY username and password for this with Tunnelblick VPN.
 
 ```
 $ ansible-playbook -i ansible/inventory/testing ansible/provision.yml --become-user=root -u USERNAME --ask-become-pass
