@@ -143,7 +143,7 @@ class QuestionRestResource extends ResourceBase {
       }
 
       if (
-        count($term['children'] > 0) &&
+        count($term['children']) > 0 &&
         $found_it = $this->find($term['children'], $tid)) {
         return $found_it;
       }

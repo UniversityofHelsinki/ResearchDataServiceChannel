@@ -9,11 +9,13 @@ use Drupal\Core\Url;
 use Drupal\externalauth\ExternalAuth;
 use Drupal\hy_samlauth\Event\HySamlauthUserSyncEvent;
 use Drupal\samlauth\SamlService as OriginalSamlService;
+use Drupal\user\PrivateTempStoreFactory;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Drupal\user\UserInterface;
+use RuntimeException;
 
 /**
  *
@@ -62,16 +64,13 @@ class SamlService extends OriginalSamlService {
    * @param \Psr\Log\LoggerInterface $logger
    *   A logger instance.
    * @param \Symfony\Component\EventDispatcher\EventDispatcherInterface $event_dispatcher
-   *   Event dispatcher.
-   * @param \Symfony\Component\HttpFoundation\RequestStack $requestStack
-   *   Request stack.
-   * @param \Symfony\Component\HttpFoundation\Session\Session $session
-   *   Symfony session.
-   * @param \Drupal\Core\Path\PathValidator $pathValidator
-   *   Pathvalidator.
+   *   The event dispatcher.
+   * @param \Drupal\user\PrivateTempStoreFactory $temp_store_factory
+   *   A temp data store factory object.
    */
-  public function __construct(ExternalAuth $external_auth, ConfigFactoryInterface $config_factory, EntityTypeManagerInterface $entity_type_manager, LoggerInterface $logger, EventDispatcherInterface $event_dispatcher, RequestStack $requestStack, Session $session, PathValidator $pathValidator) {
-    parent::__construct($external_auth, $config_factory, $entity_type_manager, $logger, $event_dispatcher);
+  public function __construct(ExternalAuth $external_auth, ConfigFactoryInterface $config_factory, EntityTypeManagerInterface $entity_type_manager, LoggerInterface $logger, EventDispatcherInterface $event_dispatcher, PrivateTempStoreFactory $temp_store_factory, RequestStack $requestStack, Session $session, PathValidator $pathValidator) {
+    parent::__construct($external_auth, $config_factory, $entity_type_manager, $logger, $event_dispatcher, $temp_store_factory);
+
     $this->setRequestStack($requestStack);
     $this->setSession($session);
     $this->setPathValidator($pathValidator);
@@ -186,6 +185,23 @@ class SamlService extends OriginalSamlService {
   public function acs() {
     // Get samlAuth response.
     $this->getSamlAuth()->processResponse();
+
+    // Now look if there were any errors and also throw.
+    $errors = $this->getSamlAuth()->getErrors();
+    if (!empty($errors)) {
+      // We have one or multiple error types / short descriptions, and one
+      // 'reason' for the last error.
+      throw new RuntimeException('Error(s) encountered during processing of ACS response. Type(s): ' . implode(', ', array_unique($errors)) . '; reason given for last error: ' . $this->getSamlAuth()->getLastErrorReason());
+    }
+
+    if (!$this->isAuthenticated()) {
+      throw new RuntimeException('Could not authenticate.');
+    }
+
+    $unique_id = $this->getAttributeByConfig('unique_id_attribute');
+    if (!$unique_id) {
+      throw new \Exception('Configured unique ID is not present in SAML response.');
+    }
 
     $attributes = $this->getAttributes();
 
