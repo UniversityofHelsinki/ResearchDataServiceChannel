@@ -1,28 +1,29 @@
 ---
 - hosts: all
   vars:
-    deploy_folder: "deploy"
+    deploy_folder: "deploy-build"
     repo: "git@github.com:UniversityofHelsinki/ResearchDataServiceChannel.git"
     backups_path: "{{ projects.default.root }}/backups"
+    build_image: "druidfi/drupal:7.3.23"
 
   tasks:
 
-    - name: "Get code from Github ({{ git_branch }} branch)"
-      local_action:
-        module: git
-        repo: "{{ repo }}"
-        dest: "../{{ deploy_folder }}"
-        version: "{{ git_branch }}"
-        force: yes
-        depth: 1
-
-    - name: "Build code for {{ project_env }} environment"
-      local_action: "command docker run --rm -v {{ lookup('env', 'PWD') }}/{{ deploy_folder }}:/app druidfi/drupal:7.3 composer install --no-dev --ignore-platform-reqs"
-
-    - name: "Create release artifact for {{ project_env }} environment"
-      local_action: "command tar -hczf artifact.tar.gz --files-from=conf/artifact/include --exclude-from=conf/artifact/exclude"
-      args:
-        chdir: "../{{ deploy_folder }}"
+#    - name: "Get code from Github ({{ git_branch }} branch)"
+#      local_action:
+#        module: git
+#        repo: "{{ repo }}"
+#        dest: "../{{ deploy_folder }}"
+#        version: "{{ git_branch }}"
+#        force: yes
+#        depth: 1
+#
+#    - name: "Build code for {{ project_env }} environment"
+#      local_action: "command docker run --rm -v {{ lookup('env', 'PWD') }}/{{ deploy_folder }}:/app {{ build_image }} composer install --no-dev --ignore-platform-reqs"
+#
+#    - name: "Create release artifact for {{ project_env }} environment"
+#      local_action: "command tar -hczf artifact.tar.gz --files-from=conf/artifact/include --exclude-from=conf/artifact/exclude"
+#      args:
+#        chdir: "../{{ deploy_folder }}"
 
     - name: Gather facts about remote
       setup:

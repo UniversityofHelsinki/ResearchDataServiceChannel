@@ -1,9 +1,9 @@
 ANSIBLE_ROLES_PATH := ansible/roles
 WARNING_USERNAME := USERNAME is required, e.g. make target USERNAME=johnsmith
 
-PHONY += deploy
-deploy: ENV := testing
-deploy: ## Deploy the app. Use ENV=production if deploying to production. Default ENV=testing
+PHONY += deploy-ansible
+deploy-ansible: ENV := testing
+deploy-ansible: ## Deploy the app using Ansible. Use ENV=production if deploying to production. Default ENV=testing
 ifndef USERNAME
 	$(call warn,$(WARNING_USERNAME))
 else

@@ -1,6 +1,6 @@
 # Ignore project files that should not be in version control
 ansible/roles
-deploy
+deploy-build
 drush/contrib/
 files
 files_private
