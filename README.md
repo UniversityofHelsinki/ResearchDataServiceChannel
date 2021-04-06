@@ -56,7 +56,7 @@ $ make deploy ENV=production USERNAME=your_username
 For testing order form, there is test IdP setup with following credentials:
 
 ```
-teppotutkija:tutkija
+teppo:tutkija
 ```
 
 ## Provisioning servers

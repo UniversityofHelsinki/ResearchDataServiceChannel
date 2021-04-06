@@ -3,6 +3,7 @@
 namespace Drupal\hy_esb\Plugin\WebformHandler;
 
 use Drupal\Component\Utility\Xss;
+use Drupal\Core\Messenger\MessengerTrait;
 use Drupal\Core\Url;
 use Drupal\node\Entity\Node;
 use Drupal\webform\Plugin\WebformHandlerBase;
@@ -29,6 +30,8 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  * )
  */
 class CustomSubmissionHandler extends WebformHandlerBase {
+
+  use MessengerTrait;
 
   /**
    * The HTTP client to fetch the feed data with.
@@ -73,6 +76,7 @@ class CustomSubmissionHandler extends WebformHandlerBase {
    * {@inheritdoc}
    */
   public function preSave(WebformSubmissionInterface $webform_submission) {
+    // API endpoint URL. Set in setting files.
     $url = \Drupal::config('esb')->get('url');
 
     $message = '';
@@ -89,13 +93,6 @@ class CustomSubmissionHandler extends WebformHandlerBase {
 ';
     }
 
-    // @todo Marko adds field 'status' to webform or delegates it to Tuomas
-    // @todo Marko double checks that 'efecte_id' is present. No submissions are
-    // supposed to go through without it.
-    // @todo Marko gathers data or uses a service to normalize webform data
-    // @todo Marko sends out a REST call for HY with correct data
-    // @todo Marko checks REST call status
-    // @todo Marko adds webform status accordingly
     // Load service node.
     $service = Node::load($data['service']);
     $service_url = Url::fromRoute('entity.node.canonical', ['node' => $service->id()])->setAbsolute()->toString();
@@ -103,7 +100,7 @@ class CustomSubmissionHandler extends WebformHandlerBase {
     $efecte_category = $service->get('field_efecte_id')->getString();
 
     if ($efecte_category === '') {
-      drupal_set_message('Ei oo asoo APIIN ilman efecte IIDEETÄ!');
+      $this->messenger()->addMessage('Efecte Category ID is required!');
       return;
     }
 
@@ -115,22 +112,20 @@ class CustomSubmissionHandler extends WebformHandlerBase {
     $output['description'] .= '\n\nCATEGORY: ' . $efecte_category;
     $output['customer'] = $data['email'];
 
-    $request_options['json'] = $output;
-
     try {
-      $response = $this->httpClient->post($url, $request_options);
+      $response = $this->httpClient->post($url, ['json' => $output]);
       $status = $response->getStatusCode();
 
       if ($status === 200) {
-        drupal_set_message('All good with following json response: "' . $response->getBody() . '"');
+        $this->messenger()->addMessage('All good with following json response: "' . $response->getBody() . '"');
       }
       else {
-        drupal_set_message('Parse the error message from json response "' . $response->getBody() . '"', 'error');
+        $this->messenger()->addMessage('Parse the error message from json response "' . $response->getBody() . '"', 'error');
         return;
       }
     }
     catch (RequestException $request_exception) {
-      drupal_set_message($request_exception->getMessage(), 'error');
+      $this->messenger()->addMessage($request_exception->getMessage(), 'error');
       return;
     }
 
