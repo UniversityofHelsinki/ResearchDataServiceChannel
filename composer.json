@@ -14,7 +14,8 @@
     "prefer-stable": true,
     "require": {
         "php": "^7.3",
-        "composer/installers": "^1.9",
+        "composer-runtime-api": "^2",
+        "composer/installers": "^1.10",
         "cweagans/composer-patches": "^1.7",
         "drupal/admin_toolbar": "^2.0",
         "drupal/adminimal_admin_toolbar": "^1.9",
@@ -34,10 +35,10 @@
         "drupal/system_status": "^2.8",
         "drupal/token": "^1.5",
         "drupal/webform": "^5.13",
-        "drush/drush": "^10.3"
+        "drush/drush": "^10.4"
     },
     "require-dev": {
-        "drupal/core-dev": "^8.9"
+        "drupal/core-dev-pinned": "^8.9"
     },
     "extra": {
         "composer-exit-on-patch-failure": true,
