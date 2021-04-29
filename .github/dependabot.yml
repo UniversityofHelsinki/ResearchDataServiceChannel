@@ -5,39 +5,7 @@ updates:
   schedule:
     interval: daily
     time: "03:00"
+    timezone: "Europe/Helsinki"
   open-pull-requests-limit: 10
   ignore:
-  - dependency-name: drupal/core-composer-scaffold
-    versions:
-    - ">= 9.0.a, < 9.1"
-  - dependency-name: drupal/core-composer-scaffold
-    versions:
-    - 9.1.4
-    - 9.1.5
-    - 9.1.6
-    - 9.1.7
-  - dependency-name: drush/drush
-    versions:
-    - 10.4.0
-    - 10.4.1
-    - 10.4.3
-  - dependency-name: drupal/restui
-    versions:
-    - 1.19.0
-    - 1.20.0
-  - dependency-name: drupal/ds
-    versions:
-    - 3.10.0
-    - 3.11.0
-    - 3.9.0
-  - dependency-name: drupal/webform
-    versions:
-    - 6.0.0
-    - 6.0.1
-    - 6.0.2
-  - dependency-name: drupal/admin_toolbar
-    versions:
-    - 3.0.0
-  - dependency-name: drupal/token
-    versions:
-    - 1.9.0
+  - dependency-name: "drupal/core-*"
