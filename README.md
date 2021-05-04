@@ -8,7 +8,7 @@ Env | Branch | Drush alias | URL
 --- | ------ | ----------- | ---
 development | * | - | https://datasupport.docker.sh/
 testing | dev | @testing | https://datasupport-test.it.helsinki.fi/
-production | master | @production | https://datasupport.helsinki.fi/
+production | main | @production | https://datasupport.helsinki.fi/
 
 ## Requirements
 
