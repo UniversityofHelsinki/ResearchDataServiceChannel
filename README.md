@@ -42,13 +42,13 @@ $ make shell
 Deploy to testing:
 
 ```
-$ make deploy USERNAME=your_username
+$ make deploy-testing
 ```
 
 Deploy to production:
 
 ```
-$ make deploy ENV=production USERNAME=your_username
+$ make deploy-production
 ```
 
 ## SSO in testing
