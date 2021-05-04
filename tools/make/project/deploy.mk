@@ -1,35 +1,30 @@
-DEPLOY_REPO := git@github.com:UniversityofHelsinki/ResearchDataServiceChannel.git
-DEPLOY_FOLDER := deploy-build
+DEPLOY_PROJECT_PATH := /data/rds
+DEPLOY_SSH := ssh -o LogLevel=QUIET -t
 
-PHONY += deploy
-deploy: ENV := testing
-deploy: --deploy-prepare deploy-build deploy-build/vendor deploy-build/artifact.tar.gz deploy-ansible
+PHONY += deploy-testing
+deploy-testing: HOST := datasupport-test.it.helsinki.fi
+deploy-testing: --deploy ## Deploy to testing
 
-PHONY += --deploy-prepare
---deploy-prepare:
-	@rm -rf $(DEPLOY_FOLDER)
+PHONY += deploy-production
+deploy-production: HOST := datasupport.helsinki.fi
+deploy-production: --deploy ## Deploy to production
 
-deploy-build:
-	$(call sub_step,Clone the repo to ./$(DEPLOY_FOLDER) folder...)
-ifeq ($(ENV),production)
-	@git clone -b master --depth 1 $(DEPLOY_REPO) $(DEPLOY_FOLDER)
-else
-	@git clone -b dev --depth 1 $(DEPLOY_REPO) $(DEPLOY_FOLDER)
-endif
-
-deploy-build/vendor:
-ifeq ($(DOCKER_COMPOSE_BIN),no)
-	$(call, warn,Composer needed!)
-else
-	$(call sub_step,Use local Composer to build...)
-	@(cd $(DEPLOY_FOLDER) && composer install --no-dev --ignore-platform-reqs)
-endif
-
-deploy-build/artifact.tar.gz:
-	$(call sub_step,Create artifact...)
-	@(cd $(DEPLOY_FOLDER) && tar -hczf artifact.tar.gz --files-from=conf/artifact/include --exclude-from=conf/artifact/exclude)
-
-PHONY += upload-artifact
-upload-artifact:
-	$(call sub_step,Upload artifact...)
-	scp $(DEPLOY_FOLDER)/artifact.tar.gz marjuhko@datasupport-test.it.helsinki.fi:/data/rds/releases/
+PHONY += --deploy
+--deploy: PROMPT := Give your HY username for syncing data:
+--deploy: USER := $(shell bash -c 'read -p "$(PROMPT) " u; echo $$u')
+--deploy: DRUSH := /usr/local/bin/drush
+--deploy: REPO_PATH := $(DEPLOY_PROJECT_PATH)/repo
+--deploy: TIMESTAMP := $(shell date "+%s")
+--deploy:
+	$(call step,Create database dump ...)
+	@$(DEPLOY_SSH) $(USER)@$(HOST) "$(DRUSH) -r $(REPO_PATH)/public sql-dump > $(DEPLOY_PROJECT_PATH)/backups/$(TIMESTAMP).sql"
+	$(call step,Pull the latest code in $(REPO_PATH) ...)
+	@$(DEPLOY_SSH) $(USER)@$(HOST) "cd $(REPO_PATH) && git pull"
+	$(call step,Run composer install ...)
+	@$(DEPLOY_SSH) $(USER)@$(HOST) "cd $(REPO_PATH) && composer install --no-dev"
+	$(call step,Copy shared files ...)
+	@$(DEPLOY_SSH) $(USER)@$(HOST) "cp $(DEPLOY_PROJECT_PATH)/shared/local.settings.php $(REPO_PATH)/public/sites/default/local.settings.php"
+	@$(DEPLOY_SSH) $(USER)@$(HOST) "cp $(DEPLOY_PROJECT_PATH)/shared/saml.local.php $(REPO_PATH)/public/sites/default/saml.local.php"
+	@$(DEPLOY_SSH) $(USER)@$(HOST) "ln -sfn $(DEPLOY_PROJECT_PATH)/shared/files $(REPO_PATH)/public/sites/default/files"
+	$(call step,Run Drush commands ...)
+	@$(DEPLOY_SSH) $(USER)@$(HOST) "$(DRUSH) -r $(REPO_PATH)/public deploy"
