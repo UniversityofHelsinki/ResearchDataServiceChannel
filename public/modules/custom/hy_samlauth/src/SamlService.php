@@ -4,12 +4,17 @@ namespace Drupal\hy_samlauth;
 
 use Drupal\Core\Config\ConfigFactoryInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
+use Drupal\Core\Flood\FloodInterface;
+use Drupal\Core\Messenger\MessengerInterface;
 use Drupal\Core\Path\PathValidator;
+use Drupal\Core\Session\AccountInterface;
+use Drupal\Core\StringTranslation\TranslationInterface;
 use Drupal\Core\Url;
+use Drupal\externalauth\Authmap;
 use Drupal\externalauth\ExternalAuth;
 use Drupal\hy_samlauth\Event\HySamlauthUserSyncEvent;
 use Drupal\samlauth\SamlService as OriginalSamlService;
-use Drupal\user\PrivateTempStoreFactory;
+use Drupal\Core\TempStore\PrivateTempStoreFactory;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\HttpFoundation\RequestStack;
@@ -29,49 +34,59 @@ class SamlService extends OriginalSamlService {
   const SESSION_SAML_EMAIL = 'UHRDS_USER_EMAIL';
   const SESSION_SAML_GROUP = 'UHRDS_USER_GROUP';
 
-  /**
-   * @var \Symfony\Component\HttpFoundation\RequestStack
-   */
-  protected $requestStack;
-  /**
-   * @var \Symfony\Component\HttpFoundation\Session\Session
-   */
   protected $session;
-  /**
-   * @var \Drupal\Core\Path\PathValidator
-   */
   protected $pathValidator;
-
-  /**
-   * @var \Drupal\Core\TempStore\PrivateTempStoreFactory
-   */
   protected $tempStoreFactory;
-
-  /**
-   * @var \Drupal\Core\TempStore\PrivateTempStore
-   */
   protected $store;
 
   /**
    * Constructor for Drupal\hy_samlauth\SamlService.
-   *
-   * @param \Drupal\externalauth\ExternalAuth $external_auth
-   *   The ExternalAuth service.
-   * @param \Drupal\Core\Config\ConfigFactoryInterface $config_factory
-   *   The config factory.
-   * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entity_type_manager
-   *   The EntityTypeManager service.
-   * @param \Psr\Log\LoggerInterface $logger
-   *   A logger instance.
-   * @param \Symfony\Component\EventDispatcher\EventDispatcherInterface $event_dispatcher
-   *   The event dispatcher.
-   * @param \Drupal\user\PrivateTempStoreFactory $temp_store_factory
-   *   A temp data store factory object.
+   * @param ExternalAuth $external_auth
+   * @param Authmap $authmap
+   * @param ConfigFactoryInterface $config_factory
+   * @param EntityTypeManagerInterface $entity_type_manager
+   * @param LoggerInterface $logger
+   * @param EventDispatcherInterface $event_dispatcher
+   * @param RequestStack $request_stack
+   * @param PrivateTempStoreFactory $temp_store_factory
+   * @param FloodInterface $flood
+   * @param AccountInterface $current_user
+   * @param MessengerInterface $messenger
+   * @param TranslationInterface $translation
+   * @param Session $session
+   * @param PathValidator $pathValidator
    */
-  public function __construct(ExternalAuth $external_auth, ConfigFactoryInterface $config_factory, EntityTypeManagerInterface $entity_type_manager, LoggerInterface $logger, EventDispatcherInterface $event_dispatcher, PrivateTempStoreFactory $temp_store_factory, RequestStack $requestStack, Session $session, PathValidator $pathValidator) {
-    parent::__construct($external_auth, $config_factory, $entity_type_manager, $logger, $event_dispatcher, $temp_store_factory);
+  public function __construct(
+    ExternalAuth $external_auth,
+    Authmap $authmap,
+    ConfigFactoryInterface $config_factory,
+    EntityTypeManagerInterface $entity_type_manager,
+    LoggerInterface $logger,
+    EventDispatcherInterface $event_dispatcher,
+    RequestStack $request_stack,
+    PrivateTempStoreFactory $temp_store_factory,
+    FloodInterface $flood,
+    AccountInterface $current_user,
+    MessengerInterface $messenger,
+    TranslationInterface $translation,
+    Session $session,
+    PathValidator $pathValidator
+  ) {
+    parent::__construct(
+      $external_auth,
+      $authmap,
+      $config_factory,
+      $entity_type_manager,
+      $logger,
+      $event_dispatcher,
+      $request_stack,
+      $temp_store_factory,
+      $flood,
+      $current_user,
+      $messenger,
+      $translation
+    );
 
-    $this->setRequestStack($requestStack);
     $this->setSession($session);
     $this->setPathValidator($pathValidator);
   }
@@ -84,23 +99,13 @@ class SamlService extends OriginalSamlService {
   }
 
   /**
-   * @param \Symfony\Component\HttpFoundation\RequestStack $requestStack
-   */
-  public function setRequestStack(RequestStack $requestStack) {
-    $this->requestStack = $requestStack;
-  }
-
-  /**
    * @param \Drupal\Core\Path\PathValidator $pathValidator
    */
   public function setPathValidator(PathValidator $pathValidator) {
     $this->pathValidator = $pathValidator;
   }
 
-  /**
-   *
-   */
-  public function synchronizeUserAttributes(UserInterface $account, $skip_save = FALSE) {
+  public function synchronizeUserAttributes(UserInterface $account, $skip_save = FALSE, $first_saml_login = FALSE) {
     // Skip user authentication.
   }
 
@@ -173,6 +178,13 @@ class SamlService extends OriginalSamlService {
   }
 
   /**
+   * @return bool if a valid user was fetched from the saml assertion this request.
+   */
+  protected function isAuthenticated() {
+    return $this->getSamlAuth()->isAuthenticated();
+  }
+
+  /**
    * Processes a SAML response (Assertion Consumer Service).
    *
    * First checks whether the SAML request is OK, then takes action on the
@@ -221,7 +233,7 @@ class SamlService extends OriginalSamlService {
   /**
    * {@inheritdoc}
    */
-  public function logout($return_to = NULL) {
+  public function logout($return_to = NULL, array $parameters = []) {
     if (!$return_to) {
       $sp_config = $this->samlAuth->getSettings()->getSPData();
       $return_to = $sp_config['singleLogoutService']['url'];

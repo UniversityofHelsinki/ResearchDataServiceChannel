@@ -51,7 +51,7 @@ class SamlController extends OriginalSamlController {
     }
 
     // Return redirect response.
-    return $this->createRedirectResponse($url);
+    return new RedirectResponse($url);
   }
 
   /**
@@ -61,7 +61,7 @@ class SamlController extends OriginalSamlController {
     $this->saml->sls();
 
     $url = $this->saml->getPostLogoutDestination()->toString(TRUE);
-    $response = $this->createRedirectResponse($url->getGeneratedUrl());
+    $response = new RedirectResponse($url->getGeneratedUrl());
     $this->saml->removePostLoginLogoutDestination();
     return $response;
   }
