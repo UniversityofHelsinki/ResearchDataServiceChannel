@@ -27,4 +27,6 @@ PHONY += --deploy
 	@$(DEPLOY_SSH) $(USER)@$(HOST) "cp $(DEPLOY_PROJECT_PATH)/shared/saml.local.php $(REPO_PATH)/public/sites/default/saml.local.php"
 	@$(DEPLOY_SSH) $(USER)@$(HOST) "ln -sfn $(DEPLOY_PROJECT_PATH)/shared/files $(REPO_PATH)/public/sites/default/files"
 	$(call step,Run Drush commands ...)
+	@$(DEPLOY_SSH) $(USER)@$(HOST) "sudo rm -rf /data/rds/shared/files/public/css"
+	@$(DEPLOY_SSH) $(USER)@$(HOST) "sudo rm -rf /data/rds/shared/files/public/js"
 	@$(DEPLOY_SSH) $(USER)@$(HOST) "$(DRUSH) -r $(REPO_PATH)/public deploy"
