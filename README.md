@@ -6,7 +6,7 @@ Listing research data services provided by the University of Helsinki with Drupa
 
 Env | Branch | Drush alias | URL
 --- | ------ | ----------- | ---
-development | * | - | https://datasupport.docker.sh/
+development | * | - | https://datasupport.docker.so/
 testing | dev | @testing | https://datasupport-test.it.helsinki.fi/
 production | master | @production | https://datasupport.helsinki.fi/
 
@@ -27,7 +27,7 @@ Start up the environment with:
 $ make fresh
 ```
 
-Ready! Now go to https://datasupport.docker.sh/ to see your site.
+Ready! Now go to https://datasupport.docker.so/ to see your site.
 
 ## Login to Drupal container
 

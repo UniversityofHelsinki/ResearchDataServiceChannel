@@ -62,8 +62,8 @@ services:
     environment:
       SIMPLESAMLPHP_IDP_BASEURLPATH: "https://idp-${DRUPAL_HOSTNAME}/simplesaml/"
       SIMPLESAMLPHP_SP_ENTITY_ID: "https://${DRUPAL_HOSTNAME}"
-      SIMPLESAMLPHP_SP_ASSERTION_CONSUMER_SERVICE: "https://datasupport.docker.sh/saml/acs"
-      SIMPLESAMLPHP_SP_SINGLE_LOGOUT_SERVICE: "https://datasupport.docker.sh/saml/sls"
+      SIMPLESAMLPHP_SP_ASSERTION_CONSUMER_SERVICE: "https://datasupport.docker.so/saml/acs"
+      SIMPLESAMLPHP_SP_SINGLE_LOGOUT_SERVICE: "https://datasupport.docker.so/saml/sls"
     volumes:
       - ./conf/local_idp_authsources.php:/var/www/simplesamlphp/config/authsources.php
     labels:
